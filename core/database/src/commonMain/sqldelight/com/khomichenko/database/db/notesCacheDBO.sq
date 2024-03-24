@@ -1,0 +1,24 @@
+import kotlin.Int;
+import kotlin.String;
+
+CREATE TABLE notesCacheDBO (
+    id INTEGER AS Int PRIMARY KEY AUTOINCREMENT,
+    title TEXT AS String NOT NULL,
+    note TEXT AS String NOT NULL,
+    last_date_changing TEXT NOT NULL
+);
+
+getAllNotes:
+SELECT * FROM notesCacheDBO;
+
+getNoteById:
+SELECT * FROM  notesCacheDBO WHERE id = ?;
+
+deleteNote:
+DELETE FROM notesCacheDBO WHERE id = ?;
+
+insertNote:
+INSERT OR REPLACE
+INTO notesCacheDBO (title, note, last_date_changing)
+VALUES (?,?,?);
+
