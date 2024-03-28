@@ -17,7 +17,8 @@ import org.koin.core.component.get
 
 internal class NotesComponentImpl(
     componentContext: ComponentContext,
-    private val openAddNoteSlot:() -> Unit
+    private val openAddNoteSlot:() -> Unit,
+    private val openEditNoteSlot:(id: Int) -> Unit
 ) : NotesComponent, KoinComponent, ComponentContext by componentContext {
 
     private val store = instanceKeeper.getStore {
@@ -42,4 +43,7 @@ internal class NotesComponentImpl(
         openAddNoteSlot()
     }
 
+    override fun openEditSlotComponent(id: Int) {
+        openEditNoteSlot(id)
+    }
 }

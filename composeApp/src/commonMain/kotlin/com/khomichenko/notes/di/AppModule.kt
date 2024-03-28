@@ -5,6 +5,7 @@ import com.arkivanov.mvikotlin.main.store.DefaultStoreFactory
 import com.khomichenko.add_note.di.AddNoteFeatureModule
 import com.khomichenko.auth.di.AuthModule
 import com.khomichenko.database.di.DatabaseCommonModule
+import com.khomichenko.edit_note.di.EditNoteModule
 import com.khomichenko.main.di.MainModule
 import com.khomichenko.onboarding.di.OnboardingModule
 import com.khomichenko.preferences.di.PreferencesModule
@@ -22,7 +23,8 @@ val AppModule = module {
         PreferencesModule,
         DatabaseCommonModule,
         NotesFeatureModule,
-        AddNoteFeatureModule
+        AddNoteFeatureModule,
+        EditNoteModule
     )
     single<StoreFactory> { DefaultStoreFactory() }
 }

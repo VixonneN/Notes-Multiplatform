@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.multiplatform)
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlinx.serialization)
+    alias(libs.plugins.compose)
+    alias(libs.plugins.moko.resources)
 }
 
 kotlin {
@@ -19,13 +21,19 @@ kotlin {
         iosSimulatorArm64()
     ).forEach {
         it.binaries.framework {
-            baseName = "main"
+            baseName = "edit_note"
             isStatic = true
         }
     }
 
     sourceSets {
         commonMain.dependencies {
+            implementation(compose.runtime)
+            implementation(compose.material3)
+            implementation(compose.materialIconsExtended)
+
+            implementation(libs.moko.core)
+            implementation(libs.moko.compose)
 
             implementation(libs.decompose)
 
@@ -35,8 +43,6 @@ kotlin {
 
             implementation(libs.koin.core)
 
-            implementation(projects.feature.notes)
-            implementation(projects.feature.addNote)
             implementation(projects.feature.editNote)
         }
     }
@@ -44,7 +50,7 @@ kotlin {
 }
 
 android {
-    namespace = "com.khomichenko.main"
+    namespace = "com.khomichenko.edit_note"
     compileSdk = 34
     defaultConfig {
         minSdk = 24

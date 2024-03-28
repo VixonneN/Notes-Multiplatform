@@ -7,6 +7,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import com.arkivanov.decompose.extensions.compose.stack.Children
 import com.arkivanov.decompose.extensions.compose.subscribeAsState
+import com.khomichenko.edit_note.EditNoteScreen
 import com.khomichenko.main.component.MainComponent
 import com.khomichenko.ui_add_note.AddNoteScreen
 import com.khomichenko.ui_note.ListNotesScreen
@@ -35,7 +36,7 @@ fun MainScreen(component: MainComponent) {
         when(slot) {
             is MainComponent.SlotChild.AddNote -> AddNoteScreen(slot.component)
             is MainComponent.SlotChild.Settings -> TODO()
-            is MainComponent.SlotChild.ShowNote -> TODO()
+            is MainComponent.SlotChild.ShowNote -> EditNoteScreen(slot.component)
         }
     }
 }

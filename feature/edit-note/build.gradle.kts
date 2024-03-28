@@ -19,7 +19,7 @@ kotlin {
         iosSimulatorArm64()
     ).forEach {
         it.binaries.framework {
-            baseName = "main"
+            baseName = "edit_note"
             isStatic = true
         }
     }
@@ -35,16 +35,16 @@ kotlin {
 
             implementation(libs.koin.core)
 
-            implementation(projects.feature.notes)
-            implementation(projects.feature.addNote)
-            implementation(projects.feature.editNote)
+            implementation(libs.kotlinx.coroutines.core)
+
+            implementation(projects.core.database)
         }
     }
 
 }
 
 android {
-    namespace = "com.khomichenko.main"
+    namespace = "com.khomichenko.edit_note"
     compileSdk = 34
     defaultConfig {
         minSdk = 24

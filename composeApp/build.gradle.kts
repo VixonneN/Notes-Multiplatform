@@ -73,6 +73,7 @@ kotlin {
             implementation(projects.feature.onboarding)
             implementation(projects.feature.notes)
             implementation(projects.feature.addNote)
+            implementation(projects.feature.editNote)
 
             //ui implementation
             implementation(projects.featureUi.auth)

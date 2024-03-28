@@ -13,6 +13,7 @@ import com.arkivanov.decompose.router.stack.childStack
 import com.arkivanov.decompose.value.Value
 import com.arkivanov.decompose.value.operator.map
 import com.khomichenko.add_note.component.AddNoteComponent
+import com.khomichenko.edit_note.component.EditNoteComponent
 import com.khomichenko.main.component.MainComponent.*
 import com.khomichenko.notes.component.NotesComponent
 import kotlinx.serialization.Serializable
@@ -28,7 +29,8 @@ internal class MainComponentImpl(
         parameters = {
             parametersOf(
                 componentContext,
-                ::openAddNoteSlot
+                ::openAddNoteSlot,
+                ::openEditNoteSlot
             )
         }
     )
@@ -37,6 +39,16 @@ internal class MainComponentImpl(
         parameters = {
             parametersOf(
                 componentContext,
+                ::dismissSlotChild
+            )
+        }
+    )
+
+    private fun editNote(componentContext: ComponentContext, idNote: Int) = get<EditNoteComponent>(
+        parameters = {
+            parametersOf(
+                componentContext,
+                idNote,
                 ::dismissSlotChild
             )
         }
@@ -59,6 +71,7 @@ internal class MainComponentImpl(
 
     override val stack: Value<ChildStack<*, ChildBottomNavigation>>
         get() = _stack
+
     override val activeChildIndex: Value<Int>
         get() = stack.map { it.active.instance.index }
 
@@ -69,9 +82,18 @@ internal class MainComponentImpl(
     ) { configuration, componentContext ->
         when (configuration) {
             SlotConfig.AddNote -> SlotChild.AddNote(addNote(componentContext))
+
             SlotConfig.Settings -> TODO()
+
+            is SlotConfig.EditNote -> SlotChild.ShowNote(
+                editNote(
+                    componentContext,
+                    configuration.id
+                )
+            )
         }
     }
+
     override val slot: Value<ChildSlot<*, SlotChild>>
         get() = _slot
 
@@ -93,6 +115,10 @@ internal class MainComponentImpl(
         slotNavigation.activate(SlotConfig.AddNote)
     }
 
+    override fun openEditNoteSlot(id: Int) {
+        slotNavigation.activate(SlotConfig.EditNote(id))
+    }
+
     @Serializable
     sealed interface StackConfig {
         @Serializable
@@ -112,5 +138,7 @@ internal class MainComponentImpl(
 
         @Serializable
         data object Settings : SlotConfig
+        @Serializable
+        data class EditNote(val id: Int) : SlotConfig
     }
 }

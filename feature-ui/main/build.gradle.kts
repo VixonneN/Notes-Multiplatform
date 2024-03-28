@@ -44,9 +44,11 @@ kotlin {
             implementation(projects.feature.main)
             implementation(projects.feature.addNote)
             implementation(projects.feature.notes)
+            implementation(projects.feature.editNote)
 
             implementation(projects.featureUi.addNote)
             implementation(projects.featureUi.note)
+            implementation(projects.featureUi.editNote)
         }
     }
 

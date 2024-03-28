@@ -35,7 +35,8 @@ fun ListNotesScreen(component: NotesComponent) {
         LazyColumn {
             items(state.value.listNotes) { note: Note ->
                 Card(
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth(),
+                    onClick = { component.openEditSlotComponent(note.id) }
                 ) {
                     Text(text = note.title)
                     Text(text = note.note)

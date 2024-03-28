@@ -5,6 +5,7 @@ import com.arkivanov.decompose.router.slot.ChildSlot
 import com.arkivanov.decompose.router.stack.ChildStack
 import com.arkivanov.decompose.value.Value
 import com.khomichenko.add_note.component.AddNoteComponent
+import com.khomichenko.edit_note.component.EditNoteComponent
 import com.khomichenko.notes.component.NotesComponent
 
 interface MainComponent {
@@ -19,7 +20,7 @@ interface MainComponent {
     sealed interface SlotChild {
         data class AddNote(val component: AddNoteComponent) : SlotChild
         data class Settings(val component: ComponentContext) : SlotChild
-        data class ShowNote(val component: ComponentContext) : SlotChild
+        data class ShowNote(val component: EditNoteComponent) : SlotChild
     }
 
     val stack: Value<ChildStack<*, ChildBottomNavigation>>
@@ -32,4 +33,5 @@ interface MainComponent {
     fun dismissSlotChild()
 
     fun openAddNoteSlot()
+    fun openEditNoteSlot(id: Int)
 }

@@ -36,6 +36,7 @@ sqlDelight = "2.0.1"
 supabase = "2.0.2"
 
 kotlinx-datetime = "0.6.0-RC"
+jetbrainsKotlinJvm = "1.9.0"
 
 [libraries]
 
@@ -120,3 +121,4 @@ buildConfig = { id = "com.github.gmazzo.buildconfig", version.ref = "buildConfig
 kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 sqlDelight = { id = "app.cash.sqldelight", version.ref = "sqlDelight" }
 moko-resources = { id = "dev.icerock.mobile.multiplatform-resources", version.ref = "moko" }
+jetbrainsKotlinJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "jetbrainsKotlinJvm" }
