@@ -37,7 +37,6 @@ internal class AddNoteComponentImpl(
 
     override fun saveNote() {
         println("saveNote")
-        store.accept(Intent.SaveNote)
-//        closeSlotComponent()
+        store.accept(Intent.SaveNote { closeSlotComponent() })
     }
 }

@@ -1,7 +1,6 @@
 package com.khomichenko.ui_note
 
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
@@ -16,9 +15,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import com.khomichenko.notes.component.NotesComponent
+import com.khomichenko.notes.component.NotesComponent.*
+import com.khomichenko.notes.mapper.Note
 
 @Composable
-fun NoteScreen(component: NotesComponent) {
+fun ListNotesScreen(component: NotesComponent) {
     Scaffold(
         floatingActionButton = {
             FloatingActionButton(
@@ -30,14 +31,14 @@ fun NoteScreen(component: NotesComponent) {
         floatingActionButtonPosition = FabPosition.End
 
     ) {
-        val state = component.state.collectAsState()
+        val state = component.state.collectAsState(Model())
         LazyColumn {
-            items(state.value.listNotes) {
+            items(state.value.listNotes) { note: Note ->
                 Card(
                     modifier = Modifier.fillMaxWidth()
                 ) {
-//                    Text(text = it.title)
-//                    Text(text = it.note)
+                    Text(text = note.title)
+                    Text(text = note.note)
                 }
             }
         }

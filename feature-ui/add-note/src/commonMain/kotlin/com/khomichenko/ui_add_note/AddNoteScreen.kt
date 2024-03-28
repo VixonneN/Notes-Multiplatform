@@ -2,6 +2,7 @@ package com.khomichenko.ui_add_note
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -25,6 +26,7 @@ fun AddNoteScreen(component: AddNoteComponent) {
     ModalBottomSheet(
         onDismissRequest = component::saveNote,
         modifier = Modifier.fillMaxWidth(),
+        sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true),
         content = {
             Box(modifier = Modifier.fillMaxSize()) {
                 AddNoteBottomSheetContent(component)

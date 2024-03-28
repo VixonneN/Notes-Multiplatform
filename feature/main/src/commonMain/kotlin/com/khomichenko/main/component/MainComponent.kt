@@ -19,6 +19,7 @@ interface MainComponent {
     sealed interface SlotChild {
         data class AddNote(val component: AddNoteComponent) : SlotChild
         data class Settings(val component: ComponentContext) : SlotChild
+        data class ShowNote(val component: ComponentContext) : SlotChild
     }
 
     val stack: Value<ChildStack<*, ChildBottomNavigation>>

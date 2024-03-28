@@ -1,13 +1,15 @@
 package com.khomichenko.ui_main
 
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
 import com.arkivanov.decompose.extensions.compose.stack.Children
 import com.arkivanov.decompose.extensions.compose.subscribeAsState
 import com.khomichenko.main.component.MainComponent
 import com.khomichenko.ui_add_note.AddNoteScreen
-import com.khomichenko.ui_note.NoteScreen
+import com.khomichenko.ui_note.ListNotesScreen
 
 @Composable
 fun MainScreen(component: MainComponent) {
@@ -21,7 +23,7 @@ fun MainScreen(component: MainComponent) {
             modifier = Modifier.padding(paddingValues)
         ) {
             when(val child = it.instance) {
-                is MainComponent.ChildBottomNavigation.ListNotes -> NoteScreen(child.component)
+                is MainComponent.ChildBottomNavigation.ListNotes -> ListNotesScreen(child.component)
                 is MainComponent.ChildBottomNavigation.FavoritesNotes -> TODO()
                 is MainComponent.ChildBottomNavigation.Profile -> TODO()
             }
@@ -33,6 +35,7 @@ fun MainScreen(component: MainComponent) {
         when(slot) {
             is MainComponent.SlotChild.AddNote -> AddNoteScreen(slot.component)
             is MainComponent.SlotChild.Settings -> TODO()
+            is MainComponent.SlotChild.ShowNote -> TODO()
         }
     }
 }

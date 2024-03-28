@@ -29,12 +29,13 @@ internal class AddNoteStoreFactory(
             when (intent) {
                 is Intent.ChangeNote -> dispatch(Result.NoteChanged(intent.newNote))
                 is Intent.ChangeTitle -> dispatch(Result.TitleChanged(intent.newTitle))
-                Intent.SaveNote -> scope.launch {
+                is Intent.SaveNote -> scope.launch {
                     try {
                         saveNote(
                             title = getState().title,
                             note = getState().note
                         )
+                        intent.onSuccessSave()
 
                     } catch (e: Throwable) {
                         e.printStackTrace()

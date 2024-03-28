@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 import com.arkivanov.decompose.ComponentContext
 import com.khomichenko.notes.di.AppModule
 import com.khomichenko.root.component.RootComponent

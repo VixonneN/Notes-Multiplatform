@@ -43,7 +43,7 @@ kotlin {
 
             implementation(libs.koin.core)
 
-            api(projects.feature.notes)
+            implementation(projects.feature.notes)
         }
     }
 

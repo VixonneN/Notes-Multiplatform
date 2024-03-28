@@ -1,12 +1,12 @@
 [versions]
 
-kotlin = "1.9.20"
+kotlin = "1.9.22"
 
-compose = "1.6.0"
+compose = "1.6.1"
 composeImageLoader = "1.7.3"
 compose-uitooling = "1.6.3"
 
-agp = "8.2.0"
+agp = "8.3.1"
 androidx-appcompat = "1.6.1"
 androidx-activityCompose = "1.8.2"
 
@@ -19,7 +19,7 @@ moko = "0.24.0-alpha-5"
 kermit = "2.0.2"
 buildConfig = "4.1.2"
 
-kotlinx-coroutines = "1.7.3"
+kotlinx-coroutines = "1.8.0"
 
 ktor = "2.3.8"
 

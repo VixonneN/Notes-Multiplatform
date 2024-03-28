@@ -5,7 +5,7 @@ import com.khomichenko.database.entity.NoteEntity
 import com.khomichenko.notes.store.NotesStore.Intent
 import com.khomichenko.notes.store.NotesStore.State
 
-interface NotesStore: Store<Intent, State, Nothing> {
+internal interface NotesStore: Store<Intent, State, Nothing> {
 
     sealed interface Intent {
         data object DoSomething: Intent

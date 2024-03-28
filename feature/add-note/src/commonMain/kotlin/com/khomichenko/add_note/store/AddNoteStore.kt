@@ -9,7 +9,7 @@ interface AddNoteStore: Store<Intent, State, Nothing> {
     sealed interface Intent {
         class ChangeTitle(val newTitle:String) : Intent
         class ChangeNote(val newNote:String) : Intent
-        data object SaveNote : Intent
+        data class SaveNote(val onSuccessSave:() -> Unit) : Intent
     }
 
     sealed interface Result {

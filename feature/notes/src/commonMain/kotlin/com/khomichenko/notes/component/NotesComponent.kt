@@ -1,11 +1,18 @@
 package com.khomichenko.notes.component
 
-import com.khomichenko.notes.store.NotesStore
-import kotlinx.coroutines.flow.StateFlow
+import com.khomichenko.notes.mapper.Note
+import kotlinx.coroutines.flow.Flow
 
 interface NotesComponent {
 
-    val state: StateFlow<NotesStore.State>
+    data class Model(
+        val listNotes: List<Note> = emptyList()
+    )
+
+    val state: Flow<Model>
 
     fun openBottomSheetComponent()
 }
+
+
+
