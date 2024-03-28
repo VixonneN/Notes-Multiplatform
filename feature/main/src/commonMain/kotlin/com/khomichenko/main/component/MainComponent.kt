@@ -7,6 +7,7 @@ import com.arkivanov.decompose.value.Value
 import com.khomichenko.add_note.component.AddNoteComponent
 import com.khomichenko.edit_note.component.EditNoteComponent
 import com.khomichenko.notes.component.NotesComponent
+import com.khomichenko.settings.component.SettingsComponent
 
 interface MainComponent {
 
@@ -19,7 +20,7 @@ interface MainComponent {
 
     sealed interface SlotChild {
         data class AddNote(val component: AddNoteComponent) : SlotChild
-        data class Settings(val component: ComponentContext) : SlotChild
+        data class Settings(val component: SettingsComponent) : SlotChild
         data class ShowNote(val component: EditNoteComponent) : SlotChild
     }
 
@@ -34,4 +35,6 @@ interface MainComponent {
 
     fun openAddNoteSlot()
     fun openEditNoteSlot(id: Int)
+
+    fun openSettingsSlot()
 }

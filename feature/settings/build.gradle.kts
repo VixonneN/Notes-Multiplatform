@@ -1,8 +1,6 @@
 plugins {
     alias(libs.plugins.multiplatform)
     alias(libs.plugins.android.library)
-    alias(libs.plugins.kotlinx.serialization)
-    alias(libs.plugins.compose)
 }
 
 kotlin {
@@ -20,44 +18,31 @@ kotlin {
         iosSimulatorArm64()
     ).forEach {
         it.binaries.framework {
-            baseName = "ui_main"
+            baseName = "settings"
             isStatic = true
         }
     }
 
     sourceSets {
         commonMain.dependencies {
-            implementation(compose.ui)
-            implementation(compose.runtime)
-            implementation(compose.material3)
-            implementation(compose.materialIconsExtended)
-
             implementation(libs.decompose)
-            implementation(libs.decompose.compose)
 
             implementation(libs.mvikotlin.core)
             implementation(libs.mvikotlin.main)
             implementation(libs.mvikotlin.coroutines)
 
+            implementation(libs.kotlinx.coroutines.core)
+
             implementation(libs.koin.core)
 
-            implementation(projects.feature.main)
-            implementation(projects.feature.addNote)
-            implementation(projects.feature.notes)
-            implementation(projects.feature.editNote)
-            implementation(projects.feature.settings)
-
-            implementation(projects.featureUi.addNote)
-            implementation(projects.featureUi.note)
-            implementation(projects.featureUi.editNote)
-            implementation(projects.featureUi.settings)
+            implementation(projects.core.preferences)
+            implementation(projects.core.database)
         }
     }
-
 }
 
 android {
-    namespace = "com.khomichenko.ui_main"
+    namespace = "com.khomichenko.settings"
     compileSdk = 34
     defaultConfig {
         minSdk = 24

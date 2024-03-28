@@ -38,6 +38,7 @@ kotlin {
             implementation(projects.feature.notes)
             implementation(projects.feature.addNote)
             implementation(projects.feature.editNote)
+            implementation(projects.feature.settings)
         }
     }
 

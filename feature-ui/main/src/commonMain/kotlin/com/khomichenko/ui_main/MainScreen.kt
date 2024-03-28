@@ -1,7 +1,14 @@
 package com.khomichenko.ui_main
 
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -9,6 +16,7 @@ import com.arkivanov.decompose.extensions.compose.stack.Children
 import com.arkivanov.decompose.extensions.compose.subscribeAsState
 import com.khomichenko.edit_note.EditNoteScreen
 import com.khomichenko.main.component.MainComponent
+import com.khomichenko.settings.SettingsScreen
 import com.khomichenko.ui_add_note.AddNoteScreen
 import com.khomichenko.ui_note.ListNotesScreen
 
@@ -17,6 +25,9 @@ fun MainScreen(component: MainComponent) {
     Scaffold(
         bottomBar = {
 
+        },
+        topBar = {
+            MainTopBar(component = component)
         }
     ) { paddingValues ->
         Children(
@@ -35,8 +46,33 @@ fun MainScreen(component: MainComponent) {
     slotChild.child?.instance?.also { slot ->
         when(slot) {
             is MainComponent.SlotChild.AddNote -> AddNoteScreen(slot.component)
-            is MainComponent.SlotChild.Settings -> TODO()
+            is MainComponent.SlotChild.Settings -> SettingsScreen(slot.component)
             is MainComponent.SlotChild.ShowNote -> EditNoteScreen(slot.component)
         }
     }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun MainTopBar(component: MainComponent) {
+    val currentComponent = component.stack.subscribeAsState().value.active.instance
+
+    val title: String = when(currentComponent) {
+        is MainComponent.ChildBottomNavigation.FavoritesNotes -> "Favorites"
+        is MainComponent.ChildBottomNavigation.ListNotes -> "Your notes"
+        is MainComponent.ChildBottomNavigation.Profile -> "Profile"
+    }
+
+    TopAppBar(
+        title = {
+            Text(text = title)
+        },
+        actions = {
+            IconButton(
+                onClick = component::openSettingsSlot
+            ) {
+                Icon(imageVector = Icons.Default.Settings, contentDescription = null)
+            }
+        }
+    )
 }

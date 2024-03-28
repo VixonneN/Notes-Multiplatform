@@ -11,6 +11,7 @@ import com.khomichenko.onboarding.di.OnboardingModule
 import com.khomichenko.preferences.di.PreferencesModule
 import com.khomichenko.registration.di.RegistrationModule
 import com.khomichenko.root.di.RootModule
+import com.khomichenko.settings.di.SettingsFeatureModule
 import org.koin.dsl.module
 
 val AppModule = module {
@@ -24,7 +25,8 @@ val AppModule = module {
         DatabaseCommonModule,
         NotesFeatureModule,
         AddNoteFeatureModule,
-        EditNoteModule
+        EditNoteModule,
+        SettingsFeatureModule
     )
     single<StoreFactory> { DefaultStoreFactory() }
 }

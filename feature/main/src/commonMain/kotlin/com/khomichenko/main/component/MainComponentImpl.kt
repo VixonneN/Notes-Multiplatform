@@ -16,6 +16,7 @@ import com.khomichenko.add_note.component.AddNoteComponent
 import com.khomichenko.edit_note.component.EditNoteComponent
 import com.khomichenko.main.component.MainComponent.*
 import com.khomichenko.notes.component.NotesComponent
+import com.khomichenko.settings.component.SettingsComponent
 import kotlinx.serialization.Serializable
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.get
@@ -54,6 +55,15 @@ internal class MainComponentImpl(
         }
     )
 
+    private fun settings(componentContext: ComponentContext) = get<SettingsComponent>(
+        parameters = {
+            parametersOf(
+                componentContext,
+                ::dismissSlotChild
+            )
+        }
+    )
+
     private val stackNavigation = StackNavigation<StackConfig>()
     private val slotNavigation = SlotNavigation<SlotConfig>()
 
@@ -83,7 +93,7 @@ internal class MainComponentImpl(
         when (configuration) {
             SlotConfig.AddNote -> SlotChild.AddNote(addNote(componentContext))
 
-            SlotConfig.Settings -> TODO()
+            SlotConfig.Settings -> SlotChild.Settings(settings(componentContext))
 
             is SlotConfig.EditNote -> SlotChild.ShowNote(
                 editNote(
@@ -119,6 +129,10 @@ internal class MainComponentImpl(
         slotNavigation.activate(SlotConfig.EditNote(id))
     }
 
+    override fun openSettingsSlot() {
+        slotNavigation.activate(SlotConfig.Settings)
+    }
+
     @Serializable
     sealed interface StackConfig {
         @Serializable
@@ -138,6 +152,7 @@ internal class MainComponentImpl(
 
         @Serializable
         data object Settings : SlotConfig
+
         @Serializable
         data class EditNote(val id: Int) : SlotConfig
     }
