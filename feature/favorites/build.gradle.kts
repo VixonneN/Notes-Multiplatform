@@ -1,7 +1,6 @@
 plugins {
     alias(libs.plugins.multiplatform)
     alias(libs.plugins.android.library)
-    alias(libs.plugins.kotlinx.serialization)
 }
 
 kotlin {
@@ -19,34 +18,30 @@ kotlin {
         iosSimulatorArm64()
     ).forEach {
         it.binaries.framework {
-            baseName = "main"
+            baseName = "favorites"
             isStatic = true
         }
     }
 
     sourceSets {
         commonMain.dependencies {
-
             implementation(libs.decompose)
 
             implementation(libs.mvikotlin.core)
             implementation(libs.mvikotlin.main)
             implementation(libs.mvikotlin.coroutines)
 
+            implementation(libs.kotlinx.coroutines.core)
+
             implementation(libs.koin.core)
 
-            implementation(projects.feature.notes)
-            implementation(projects.feature.addNote)
-            implementation(projects.feature.editNote)
-            implementation(projects.feature.settings)
-            implementation(projects.feature.favorites)
+            implementation(projects.core.database)
         }
     }
-
 }
 
 android {
-    namespace = "com.khomichenko.main"
+    namespace = "com.khomichenko.favorites"
     compileSdk = 34
     defaultConfig {
         minSdk = 24

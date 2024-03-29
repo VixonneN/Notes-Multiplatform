@@ -75,6 +75,7 @@ kotlin {
             implementation(projects.feature.addNote)
             implementation(projects.feature.editNote)
             implementation(projects.feature.settings)
+            implementation(projects.feature.favorites)
 
             //ui implementation
             implementation(projects.featureUi.auth)

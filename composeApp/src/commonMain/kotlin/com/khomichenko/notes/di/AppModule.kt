@@ -6,6 +6,7 @@ import com.khomichenko.add_note.di.AddNoteFeatureModule
 import com.khomichenko.auth.di.AuthModule
 import com.khomichenko.database.di.DatabaseCommonModule
 import com.khomichenko.edit_note.di.EditNoteModule
+import com.khomichenko.favorites.di.FavoritesFeatureModule
 import com.khomichenko.main.di.MainModule
 import com.khomichenko.onboarding.di.OnboardingModule
 import com.khomichenko.preferences.di.PreferencesModule
@@ -26,7 +27,8 @@ val AppModule = module {
         NotesFeatureModule,
         AddNoteFeatureModule,
         EditNoteModule,
-        SettingsFeatureModule
+        SettingsFeatureModule,
+        FavoritesFeatureModule
     )
     single<StoreFactory> { DefaultStoreFactory() }
 }

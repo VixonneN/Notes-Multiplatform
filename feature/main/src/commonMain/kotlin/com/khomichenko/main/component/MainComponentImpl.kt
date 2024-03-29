@@ -14,6 +14,7 @@ import com.arkivanov.decompose.value.Value
 import com.arkivanov.decompose.value.operator.map
 import com.khomichenko.add_note.component.AddNoteComponent
 import com.khomichenko.edit_note.component.EditNoteComponent
+import com.khomichenko.favorites.component.FavoritesComponent
 import com.khomichenko.main.component.MainComponent.*
 import com.khomichenko.notes.component.NotesComponent
 import com.khomichenko.settings.component.SettingsComponent
@@ -27,6 +28,16 @@ internal class MainComponentImpl(
 ) : MainComponent, KoinComponent, ComponentContext by componentContext {
 
     private fun listNotes(componentContext: ComponentContext) = get<NotesComponent>(
+        parameters = {
+            parametersOf(
+                componentContext,
+                ::openAddNoteSlot,
+                ::openEditNoteSlot
+            )
+        }
+    )
+
+    private fun favoritesNotes(componentContext: ComponentContext) = get<FavoritesComponent>(
         parameters = {
             parametersOf(
                 componentContext,
@@ -74,7 +85,7 @@ internal class MainComponentImpl(
     ) { configuration, componentContext ->
         when (configuration) {
             StackConfig.ListNotes -> ChildBottomNavigation.ListNotes(listNotes(componentContext))
-            StackConfig.Favorites -> TODO()
+            StackConfig.Favorites -> ChildBottomNavigation.FavoritesNotes(favoritesNotes(componentContext))
             StackConfig.Profile -> TODO()
         }
     }
