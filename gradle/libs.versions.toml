@@ -6,7 +6,7 @@ compose = "1.6.11"
 composeImageLoader = "1.7.8"
 compose-uitooling = "1.6.8"
 
-agp = "8.5.1"
+agp = "8.5.2"
 androidx-appcompat = "1.7.0"
 androidx-activityCompose = "1.9.1"
 
@@ -36,6 +36,16 @@ sqlDelight = "2.0.2"
 supabase = "2.5.2"
 
 kotlinx-datetime = "0.6.0"
+
+##firebase-android
+#plugins
+google-services-plugin = "4.4.2"
+firebase-crashlytics-plugin = "3.0.2"
+#dependency
+firebase-version = "33.1.2"
+##firebase-ios
+#dependency
+gitlive = "1.13.0"
 
 [libraries]
 
@@ -110,6 +120,18 @@ moko-compose = { module = "dev.icerock.moko:resources-compose", version.ref = "m
 #date time
 kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinx-datetime" }
 
+# firebase android
+firebase-boom = { module = "com.google.firebase:firebase-bom", version.ref = "firebase-version" }
+firebase-analytics = { module = "com.google.firebase:firebase-analytics" }
+firebase-crashlytics = { module = "com.google.firebase:firebase-crashlytics" }
+firebase-auth = { module = "com.google.firebase:firebase-auth" }
+firebase-database = { module = "com.google.firebase:firebase-database" }
+# firebase kmp
+gitlive-auth = { module = "dev.gitlive:firebase-auth", version.ref = "gitlive" }
+gitlive-database = { module = "dev.gitlive:firebase-database", version.ref = "gitlive" }
+gitlive-firestore = { module = "dev.gitlive:firebase-firestore", version.ref = "gitlive" }
+gitlive-crashlytics = { module = "dev.gitlive:firebase-crashlytics", version.ref = "gitlive" }
+
 [plugins]
 
 multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
@@ -121,3 +143,6 @@ buildConfig = { id = "com.github.gmazzo.buildconfig", version.ref = "buildConfig
 kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 sqlDelight = { id = "app.cash.sqldelight", version.ref = "sqlDelight" }
 moko-resources = { id = "dev.icerock.mobile.multiplatform-resources", version.ref = "moko" }
+
+google-services-android = { id = "com.google.gms.google-services", version.ref = "google-services-plugin" }
+firebase-crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "firebase-crashlytics-plugin" }

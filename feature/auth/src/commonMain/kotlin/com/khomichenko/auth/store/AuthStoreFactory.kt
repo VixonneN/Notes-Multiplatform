@@ -34,7 +34,7 @@ internal class AuthStoreFactory(
             }
         }
         
-        private suspend fun tryLogin(getState: AuthStore.State) {
+        private suspend fun tryLogin(getState: State) {
             if (!getState.isLoginError && !getState.isPasswordError) {
                 val login = getState.login
                 val password = getState.password

@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.compose)
     alias(libs.plugins.compose.plugin)
     alias(libs.plugins.android.application)
+    alias(libs.plugins.google.services.android)
     alias(libs.plugins.buildConfig)
     alias(libs.plugins.kotlinx.serialization)
     alias(libs.plugins.sqlDelight)
@@ -85,6 +86,8 @@ kotlin {
             implementation(projects.featureUi.onboarding)
             implementation(projects.featureUi.main)
             implementation(projects.featureUi.registration)
+
+            api(libs.gitlive.crashlytics)
         }
 
         commonTest.dependencies {
@@ -136,5 +139,5 @@ buildConfig {
 
 
 multiplatformResources {
-    resourcesPackage.set("com.khomichenko.fitness")
+    resourcesPackage.set("com.khomichenko.notes")
 }
