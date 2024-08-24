@@ -23,21 +23,21 @@ internal class AuthStoreFactory(
     ) {}
     
     private inner class ExecutorImpl: CoroutineExecutor<Intent, Unit, State, Result, Label>() {
-        override fun executeIntent(intent: Intent, getState: () -> State) {
+        override fun executeIntent(intent: Intent,) {
             when(intent) {
                 is Intent.ChangeLogin -> dispatch(Result.LoginChanged(intent.login))
                 is Intent.ChangePassword -> dispatch(Result.PasswordChanged(intent.password))
                 Intent.ChangePasswordVisibility -> dispatch(Result.PasswordVisibilityChanged)
                 is Intent.SetLoginError -> dispatch(Result.LoginErrorChanged(intent.isError))
                 is Intent.SetPasswordError -> dispatch(Result.PasswordErrorChanged(intent.isError))
-                Intent.TryLogin -> scope.launch { tryLogin(getState) }
+                Intent.TryLogin -> scope.launch { tryLogin(state()) }
             }
         }
         
-        private suspend fun tryLogin(getState: () -> State) {
-            if (!getState().isLoginError && !getState().isPasswordError) {
-                val login = getState().login
-                val password = getState().password
+        private suspend fun tryLogin(getState: AuthStore.State) {
+            if (!getState.isLoginError && !getState.isPasswordError) {
+                val login = getState.login
+                val password = getState.password
                 
                 //todo request
                 

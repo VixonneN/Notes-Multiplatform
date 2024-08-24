@@ -25,15 +25,15 @@ internal class AddNoteStoreFactory(
         ) {}
 
     private inner class ExecutorImpl : CoroutineExecutor<Intent, Unit, State, Result, Nothing>() {
-        override fun executeIntent(intent: Intent, getState: () -> State) {
+        override fun executeIntent(intent: Intent) {
             when (intent) {
                 is Intent.ChangeNote -> dispatch(Result.NoteChanged(intent.newNote))
                 is Intent.ChangeTitle -> dispatch(Result.TitleChanged(intent.newTitle))
                 is Intent.SaveNote -> scope.launch {
                     try {
                         saveNote(
-                            title = getState().title,
-                            note = getState().note
+                            title = state().title,
+                            note = state().note
                         )
                         intent.onSuccessSave()
 

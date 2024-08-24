@@ -5,7 +5,9 @@ import com.arkivanov.mvikotlin.core.store.SimpleBootstrapper
 import com.arkivanov.mvikotlin.core.store.Store
 import com.arkivanov.mvikotlin.core.store.StoreFactory
 import com.arkivanov.mvikotlin.extensions.coroutines.CoroutineExecutor
-import com.khomichenko.onboarding.store.OnboardingStore.*
+import com.khomichenko.onboarding.store.OnboardingStore.Intent
+import com.khomichenko.onboarding.store.OnboardingStore.Result
+import com.khomichenko.onboarding.store.OnboardingStore.State
 import com.khomichenko.preferences.repository.PreferenceRepository
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.launchIn
@@ -27,7 +29,7 @@ internal class OnboardingStoreFactory(
     ) {}
 
     private inner class ExecutorImpl : CoroutineExecutor<Intent, Unit, State, Result, Nothing>() {
-        override fun executeAction(action: Unit, getState: () -> State) {
+        override fun executeAction(action: Unit) {
             preferenceRepository.getEndOnboarding()
                 .combine(preferenceRepository.getUserToken()) { isEnd: Boolean, token : String ->
                     when {
@@ -38,7 +40,7 @@ internal class OnboardingStoreFactory(
                 .launchIn(scope)
         }
 
-        override fun executeIntent(intent: Intent, getState: () -> State) {
+        override fun executeIntent(intent: Intent) {
             when (intent) {
                 is Intent.SetOnboardingComplete -> setOnboardingState(isComplete = intent.isComplete)
             }

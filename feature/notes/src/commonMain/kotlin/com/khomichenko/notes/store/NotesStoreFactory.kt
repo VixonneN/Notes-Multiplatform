@@ -1,19 +1,17 @@
 package com.khomichenko.notes.store
 
 import com.arkivanov.mvikotlin.core.store.Reducer
-import com.arkivanov.mvikotlin.core.store.SimpleBootstrapper
 import com.arkivanov.mvikotlin.core.store.Store
 import com.arkivanov.mvikotlin.core.store.StoreFactory
 import com.arkivanov.mvikotlin.extensions.coroutines.CoroutineBootstrapper
 import com.arkivanov.mvikotlin.extensions.coroutines.CoroutineExecutor
 import com.khomichenko.database.repository.NotesDatabaseRepository
-import com.khomichenko.notes.store.NotesStore.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.IO
-import kotlinx.coroutines.flow.flowOn
+import com.khomichenko.notes.store.NotesStore.Action
+import com.khomichenko.notes.store.NotesStore.Intent
+import com.khomichenko.notes.store.NotesStore.Result
+import com.khomichenko.notes.store.NotesStore.State
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.launch
 
 internal class NotesStoreFactory(
     private val storeFactory: StoreFactory,
@@ -38,7 +36,7 @@ internal class NotesStoreFactory(
     }
 
     private inner class ExecutorImpl : CoroutineExecutor<Intent, Action, State, Result, Nothing>() {
-        override fun executeIntent(intent: Intent, getState: () -> State) {
+        override fun executeIntent(intent: Intent) {
             when (intent) {
                 Intent.DoSomething -> doHust()
             }
@@ -48,7 +46,7 @@ internal class NotesStoreFactory(
             println("doHUST")
         }
 
-        override fun executeAction(action: Action, getState: () -> State) {
+        override fun executeAction(action: Action) {
             when (action) {
                 is Action.FetchDatabase -> dispatch(Result.DatabaseListFetched(notes = action.notes))
             }

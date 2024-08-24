@@ -1,4 +1,5 @@
-import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
+import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     alias(libs.plugins.multiplatform)
@@ -7,32 +8,22 @@ plugins {
 
 kotlin {
     androidTarget {
-        compilations.all {
-            kotlinOptions {
-                jvmTarget = "1.8"
-            }
+        @OptIn(ExperimentalKotlinGradlePluginApi::class)
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_17)
         }
     }
-    
-    val xcf = XCFramework()
-    listOf(
-        iosX64(),
-        iosArm64(),
-        iosSimulatorArm64()
-    ).forEach {
-        it.binaries.framework {
-            baseName = "preferences"
-            xcf.add(this)
-            isStatic = true
-        }
-    }
+
+    iosX64()
+    iosArm64()
+    iosSimulatorArm64()
 
     sourceSets {
         commonMain.dependencies {
             //preferences
             implementation(libs.multiplatform.settings.coroutines)
             implementation(libs.multiplatform.settings)
-            
+
             //di
             implementation(libs.koin.core)
 
@@ -43,7 +34,7 @@ kotlin {
             implementation(libs.multiplatform.settings.datastore)
             implementation(libs.androidx.datastore.core)
             implementation(libs.androidx.datastore.preferences)
-            
+
             //di
             implementation(libs.koin.core)
         }
@@ -59,5 +50,9 @@ android {
     compileSdk = 34
     defaultConfig {
         minSdk = 24
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 }

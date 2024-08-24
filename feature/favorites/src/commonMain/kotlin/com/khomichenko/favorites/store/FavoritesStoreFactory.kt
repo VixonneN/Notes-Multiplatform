@@ -33,7 +33,7 @@ internal class FavoritesStoreFactory(
     }
 
     private inner class ExecutorImpl : CoroutineExecutor<Intent, Action, State, Result, Nothing>() {
-        override fun executeIntent(intent: Intent, getState: () -> State) {
+        override fun executeIntent(intent: Intent) {
             when (intent) {
                 Intent.DoSomething -> doHust()
             }
@@ -43,7 +43,7 @@ internal class FavoritesStoreFactory(
             println("doHUST")
         }
 
-        override fun executeAction(action: Action, getState: () -> State) {
+        override fun executeAction(action: Action) {
             when (action) {
                 is Action.FetchDatabase -> dispatch(Result.DatabaseListFetched(notes = action.notes))
             }

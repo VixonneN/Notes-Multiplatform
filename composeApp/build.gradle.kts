@@ -1,6 +1,10 @@
+import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     alias(libs.plugins.multiplatform)
     alias(libs.plugins.compose)
+    alias(libs.plugins.compose.plugin)
     alias(libs.plugins.android.application)
     alias(libs.plugins.buildConfig)
     alias(libs.plugins.kotlinx.serialization)
@@ -10,10 +14,9 @@ plugins {
 
 kotlin {
     androidTarget {
-        compilations.all {
-            kotlinOptions {
-                jvmTarget = "17"
-            }
+        @OptIn(ExperimentalKotlinGradlePluginApi::class)
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_17)
         }
     }
 
@@ -33,7 +36,7 @@ kotlin {
     sourceSets {
         all {
             languageSettings {
-                optIn("org.jetbrains.compose.resources.ExperimentalResourceApi")
+//                optIn("org.jetbrains.compose.resources.ExperimentalResourceApi")
             }
         }
         commonMain.dependencies {
@@ -102,7 +105,7 @@ android {
     compileSdk = 34
 
     defaultConfig {
-        minSdk = 24
+        minSdk = 26
         targetSdk = 34
 
         applicationId = "com.khomichenko.notes.androidApp"
@@ -122,7 +125,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.11"
+        kotlinCompilerExtensionVersion = "1.5.15"
     }
 }
 
@@ -133,5 +136,5 @@ buildConfig {
 
 
 multiplatformResources {
-    this.resourcesPackage.set("com.khomichenko.fitness")
+    resourcesPackage.set("com.khomichenko.fitness")
 }
