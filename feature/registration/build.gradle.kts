@@ -29,6 +29,11 @@ kotlin {
             implementation(libs.mvikotlin.coroutines)
 
             implementation(libs.koin.core)
+
+            implementation(libs.kotlinx.coroutines.core)
+
+            implementation(projects.core.network)
+            implementation(projects.core.preferences)
         }
     }
 }

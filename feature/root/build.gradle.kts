@@ -30,6 +30,10 @@ kotlin {
 
             implementation(libs.koin.core)
 
+            implementation(libs.kotlinx.coroutines.core)
+
+            implementation(projects.core.preferences)
+
             implementation(projects.feature.auth)
             implementation(projects.feature.main)
             implementation(projects.feature.onboarding)

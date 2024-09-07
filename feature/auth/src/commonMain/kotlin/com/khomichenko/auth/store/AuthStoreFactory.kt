@@ -6,12 +6,14 @@ import com.arkivanov.mvikotlin.core.store.Store
 import com.arkivanov.mvikotlin.core.store.StoreFactory
 import com.arkivanov.mvikotlin.extensions.coroutines.CoroutineExecutor
 import com.khomichenko.auth.store.AuthStore.*
+import com.khomichenko.network.repository.AuthRepository
 import com.khomichenko.preferences.repository.PreferenceRepository
 import kotlinx.coroutines.launch
 
 internal class AuthStoreFactory(
     private val storeFactory: StoreFactory,
-    private val preferenceRepository: PreferenceRepository
+    private val preferenceRepository: PreferenceRepository,
+    private val authRepository: AuthRepository
 ) {
     
     fun create() : AuthStore = object : AuthStore, Store<Intent, State, Label> by storeFactory.create(
@@ -38,12 +40,16 @@ internal class AuthStoreFactory(
             if (!getState.isLoginError && !getState.isPasswordError) {
                 val login = getState.login
                 val password = getState.password
-                
-                //todo request
-                
-                
-                val response = "asdfasdfasf;lasf"
-                preferenceRepository.setUserToken(response)
+
+                authRepository.login(login, password)
+                    .onSuccess { response ->
+                        response?.let {
+                            preferenceRepository.setUserToken(it)
+                        }
+                    }
+                    .onFailure {
+                        publish(Label.ShowSnackbarError)
+                    }
             }
         }
     }

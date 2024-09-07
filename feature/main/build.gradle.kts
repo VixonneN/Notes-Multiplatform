@@ -35,6 +35,7 @@ kotlin {
             implementation(projects.feature.editNote)
             implementation(projects.feature.settings)
             implementation(projects.feature.favorites)
+            implementation(projects.feature.profile)
         }
     }
 

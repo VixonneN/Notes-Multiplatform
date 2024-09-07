@@ -1,4 +1,4 @@
-package com.khomichenko.ui_auth.composables
+package com.khomichenko.ui_profile.composables
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme.colorScheme

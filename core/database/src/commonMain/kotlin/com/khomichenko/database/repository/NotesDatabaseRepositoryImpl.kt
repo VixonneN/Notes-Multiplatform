@@ -10,11 +10,8 @@ import com.khomichenko.database.utils.mapToOne
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.withContext
 
 internal class NotesDatabaseRepositoryImpl(
     database: notesCacheDatabase
@@ -35,7 +32,6 @@ internal class NotesDatabaseRepositoryImpl(
             .map { noteDBO -> noteDBO.toEntity() }
 
     override suspend fun insertNote(note: NoteEntity) {
-        println(note.toString())
         note.toDBO().let {
             databaseQuery.insertNote(
                 title = it.title,

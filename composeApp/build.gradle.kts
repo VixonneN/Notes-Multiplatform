@@ -68,6 +68,7 @@ kotlin {
             //core implementation
             implementation(projects.core.preferences)
             implementation(projects.core.database)
+            implementation(projects.core.network)
 
             //feature implementation
             implementation(projects.feature.root)

@@ -1,16 +1,10 @@
+@file:OptIn(ExperimentalCupertinoApi::class, ExperimentalAdaptiveApi::class)
+
 package com.khomichenko.ui_main
 
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Settings
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.NavigationBar
-import androidx.compose.material3.NavigationBarItem
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -22,15 +16,25 @@ import com.khomichenko.main.component.MainComponent
 import com.khomichenko.settings.SettingsScreen
 import com.khomichenko.ui_add_note.AddNoteScreen
 import com.khomichenko.ui_note.ListNotesScreen
+import com.khomichenko.ui_profile.ProfileRootScreen
+import io.github.alexzhirkevich.cupertino.ExperimentalCupertinoApi
+import io.github.alexzhirkevich.cupertino.adaptive.AdaptiveIconButton
+import io.github.alexzhirkevich.cupertino.adaptive.AdaptiveNavigationBar
+import io.github.alexzhirkevich.cupertino.adaptive.AdaptiveNavigationBarItem
+import io.github.alexzhirkevich.cupertino.adaptive.AdaptiveScaffold
+import io.github.alexzhirkevich.cupertino.adaptive.AdaptiveTopAppBar
+import io.github.alexzhirkevich.cupertino.adaptive.ExperimentalAdaptiveApi
+import io.github.alexzhirkevich.cupertino.adaptive.icons.AdaptiveIcons
+import io.github.alexzhirkevich.cupertino.adaptive.icons.Settings
 
 @Composable
 fun MainScreen(component: MainComponent) {
-    Scaffold(
+    AdaptiveScaffold(
         bottomBar = {
             NotesBottomNavigation(component)
         },
         topBar = {
-            MainTopBar(component = component)
+            MainTopBar(component)
         }
     ) { paddingValues ->
         Children(
@@ -40,7 +44,7 @@ fun MainScreen(component: MainComponent) {
             when (val child = it.instance) {
                 is MainComponent.ChildBottomNavigation.ListNotes -> ListNotesScreen(child.component)
                 is MainComponent.ChildBottomNavigation.FavoritesNotes -> FavoritesScreen(child.component)
-                is MainComponent.ChildBottomNavigation.Profile -> TODO()
+                is MainComponent.ChildBottomNavigation.Profile -> ProfileRootScreen(child.component)
             }
         }
     }
@@ -55,7 +59,6 @@ fun MainScreen(component: MainComponent) {
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun MainTopBar(component: MainComponent) {
     val currentComponent = component.stack.subscribeAsState().value.active.instance
@@ -67,17 +70,18 @@ private fun MainTopBar(component: MainComponent) {
         is MainComponent.ChildBottomNavigation.Profile -> "Profile"
     }
 
-    TopAppBar(
+    AdaptiveTopAppBar(
         title = {
             Text(text = title)
         },
         actions = {
-            IconButton(
+            AdaptiveIconButton(
                 onClick = component::openSettingsSlot
             ) {
-                Icon(imageVector = Icons.Default.Settings, contentDescription = null)
+                Icon(imageVector = AdaptiveIcons.Outlined.Settings, contentDescription = null)
             }
         }
+
     )
 }
 
@@ -88,14 +92,14 @@ private fun NotesBottomNavigation(component: MainComponent) {
 
     val bottomStrings = listOf("Notes", "Favorites", "Profile")
 
-    NavigationBar {
-        bottomStrings.forEachIndexed { index, string ->
-            NavigationBarItem(
+    AdaptiveNavigationBar {
+        bottomStrings.forEachIndexed { index, s ->
+            AdaptiveNavigationBarItem(
                 selected = index == currentComponent.value,
                 onClick = { component.onShelfSelect(index) },
                 alwaysShowLabel = false,
                 label = {
-                    Text(text = string)
+                    Text(text = s)
                 },
                 icon = {
 

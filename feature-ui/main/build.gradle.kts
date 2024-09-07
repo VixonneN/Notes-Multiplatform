@@ -37,18 +37,24 @@ kotlin {
 
             implementation(libs.koin.core)
 
+            implementation(libs.cupertino.decompose)
+            implementation(libs.cupertino.adaptive)
+            implementation(libs.cupertino.icons.extended)
+
             implementation(projects.feature.main)
             implementation(projects.feature.addNote)
             implementation(projects.feature.notes)
             implementation(projects.feature.editNote)
             implementation(projects.feature.settings)
             implementation(projects.feature.favorites)
+            implementation(projects.feature.profile)
 
             implementation(projects.featureUi.addNote)
             implementation(projects.featureUi.note)
             implementation(projects.featureUi.editNote)
             implementation(projects.featureUi.settings)
             implementation(projects.featureUi.favorites)
+            implementation(projects.featureUi.profile)
         }
     }
 }

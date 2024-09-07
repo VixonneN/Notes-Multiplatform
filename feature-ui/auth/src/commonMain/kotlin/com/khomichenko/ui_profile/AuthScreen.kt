@@ -1,4 +1,4 @@
-package com.khomichenko.ui_auth
+package com.khomichenko.ui_profile
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
@@ -11,8 +11,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.khomichenko.auth.component.AuthComponent
 import com.khomichenko.auth.store.AuthStore
-import com.khomichenko.ui_auth.composables.OutlinedLoginField
-import com.khomichenko.ui_auth.composables.OutlinedPasswordField
+import com.khomichenko.ui_profile.composables.OutlinedLoginField
+import com.khomichenko.ui_profile.composables.OutlinedPasswordField
 
 @Composable
 fun AuthScreen(component: AuthComponent) {

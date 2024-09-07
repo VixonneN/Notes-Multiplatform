@@ -34,7 +34,7 @@ internal class OnboardingStoreFactory(
                 .combine(preferenceRepository.getUserToken()) { isEnd: Boolean, token : String ->
                     when {
                         isEnd && token.isNotEmpty() -> moveToMain()
-                        isEnd && token.isEmpty() -> moveToAuth()
+                        isEnd && token.isEmpty() -> moveToMain()
                     }
                 }
                 .launchIn(scope)

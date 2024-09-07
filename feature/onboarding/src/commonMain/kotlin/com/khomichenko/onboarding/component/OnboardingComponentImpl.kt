@@ -10,7 +10,7 @@ import org.koin.core.component.get
 internal class OnboardingComponentImpl(
     componentContext: ComponentContext,
     private val toAuth:() -> Unit,
-    private val toMain:() -> Unit
+    private val toMain:() -> Unit,
 ) : KoinComponent, OnboardingComponent, ComponentContext by componentContext {
     
     private val store = instanceKeeper.getStore {
