@@ -2,6 +2,7 @@
 
 package com.khomichenko.ui_main
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -17,11 +18,11 @@ import com.khomichenko.settings.SettingsScreen
 import com.khomichenko.ui_add_note.AddNoteScreen
 import com.khomichenko.ui_note.ListNotesScreen
 import com.khomichenko.ui_profile.ProfileRootScreen
+import io.github.alexzhirkevich.cupertino.CupertinoBottomSheetScaffold
 import io.github.alexzhirkevich.cupertino.ExperimentalCupertinoApi
 import io.github.alexzhirkevich.cupertino.adaptive.AdaptiveIconButton
 import io.github.alexzhirkevich.cupertino.adaptive.AdaptiveNavigationBar
 import io.github.alexzhirkevich.cupertino.adaptive.AdaptiveNavigationBarItem
-import io.github.alexzhirkevich.cupertino.adaptive.AdaptiveScaffold
 import io.github.alexzhirkevich.cupertino.adaptive.AdaptiveTopAppBar
 import io.github.alexzhirkevich.cupertino.adaptive.ExperimentalAdaptiveApi
 import io.github.alexzhirkevich.cupertino.adaptive.icons.AdaptiveIcons
@@ -29,7 +30,11 @@ import io.github.alexzhirkevich.cupertino.adaptive.icons.Settings
 
 @Composable
 fun MainScreen(component: MainComponent) {
-    AdaptiveScaffold(
+    val slotChild by component.slot.subscribeAsState()
+
+    CupertinoBottomSheetScaffold(
+        sheetContent = {
+        },
         bottomBar = {
             NotesBottomNavigation(component)
         },
@@ -47,14 +52,16 @@ fun MainScreen(component: MainComponent) {
                 is MainComponent.ChildBottomNavigation.Profile -> ProfileRootScreen(child.component)
             }
         }
-    }
 
-    val slotChild by component.slot.subscribeAsState()
-    slotChild.child?.instance?.also { slot ->
-        when (slot) {
-            is MainComponent.SlotChild.AddNote -> AddNoteScreen(slot.component)
-            is MainComponent.SlotChild.Settings -> SettingsScreen(slot.component)
-            is MainComponent.SlotChild.ShowNote -> EditNoteScreen(slot.component)
+        Box(modifier = Modifier.padding(paddingValues)) {
+            slotChild.child?.instance?.also { slot ->
+                when (slot) {
+                    is MainComponent.SlotChild.AddNote -> AddNoteScreen(slot.component)
+                    is MainComponent.SlotChild.Settings -> SettingsScreen(slot.component)
+                    is MainComponent.SlotChild.ShowNote -> EditNoteScreen(slot.component)
+                }
+            }
+
         }
     }
 }

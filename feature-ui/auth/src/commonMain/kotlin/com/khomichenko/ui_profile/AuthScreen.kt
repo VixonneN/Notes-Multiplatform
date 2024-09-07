@@ -13,11 +13,14 @@ import com.khomichenko.auth.component.AuthComponent
 import com.khomichenko.auth.store.AuthStore
 import com.khomichenko.ui_profile.composables.OutlinedLoginField
 import com.khomichenko.ui_profile.composables.OutlinedPasswordField
+import io.github.alexzhirkevich.cupertino.adaptive.AdaptiveScaffold
+import io.github.alexzhirkevich.cupertino.adaptive.ExperimentalAdaptiveApi
 
+@OptIn(ExperimentalAdaptiveApi::class)
 @Composable
 fun AuthScreen(component: AuthComponent) {
     val snackbarState = remember { SnackbarHostState() }
-    Scaffold(
+    AdaptiveScaffold(
         snackbarHost = { SnackbarHost(snackbarState) }
     ) {
         AuthContent(component, Modifier.padding(it))

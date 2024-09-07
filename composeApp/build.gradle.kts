@@ -11,6 +11,7 @@ plugins {
     alias(libs.plugins.kotlinx.serialization)
     alias(libs.plugins.sqlDelight)
     alias(libs.plugins.moko.resources)
+    alias(libs.plugins.firebase.crashlytics)
 }
 
 kotlin {
@@ -64,6 +65,8 @@ kotlin {
 
             api(libs.essenty.lifecycle)
             api(libs.essenty.coroutines)
+
+            implementation(libs.cupertino.adaptive)
             
             //core implementation
             implementation(projects.core.preferences)
@@ -100,6 +103,9 @@ kotlin {
             implementation(libs.androidx.activityCompose)
 
             implementation(libs.koin.android)
+
+            implementation(project.dependencies.platform(libs.firebase.boom))
+            implementation(libs.firebase.crashlytics)
         }
     }
 }

@@ -32,6 +32,7 @@ kotlin {
             implementation(libs.moko.compose)
 
             implementation(libs.decompose)
+            implementation(libs.cupertino.adaptive)
 
             implementation(libs.mvikotlin.core)
             implementation(libs.mvikotlin.main)

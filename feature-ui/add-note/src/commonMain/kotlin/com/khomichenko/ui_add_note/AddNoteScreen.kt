@@ -1,38 +1,59 @@
+@file:OptIn(ExperimentalAdaptiveApi::class)
+
 package com.khomichenko.ui_add_note
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.ModalBottomSheet
-import androidx.compose.material3.ModalBottomSheetProperties
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
-import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.khomichenko.add_note.component.AddNoteComponent
+import io.github.alexzhirkevich.cupertino.CupertinoBottomSheetContent
+import io.github.alexzhirkevich.cupertino.ExperimentalCupertinoApi
+import io.github.alexzhirkevich.cupertino.adaptive.AdaptiveIconButton
+import io.github.alexzhirkevich.cupertino.adaptive.AdaptiveTopAppBar
+import io.github.alexzhirkevich.cupertino.adaptive.ExperimentalAdaptiveApi
+import io.github.alexzhirkevich.cupertino.adaptive.icons.AdaptiveIcons
+import io.github.alexzhirkevich.cupertino.adaptive.icons.Close
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalCupertinoApi::class)
 @Composable
 fun AddNoteScreen(component: AddNoteComponent) {
-    ModalBottomSheet(
-        onDismissRequest = component::saveNote,
-        modifier = Modifier.fillMaxWidth(),
-        sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true),
-        content = {
-            Box(modifier = Modifier.fillMaxSize()) {
-                AddNoteBottomSheetContent(component)
+    CupertinoBottomSheetContent(
+        topBar = {
+            TopBar(component)
+        }
+    ) {
+        Box(modifier = Modifier.fillMaxSize()) {
+            AddNoteBottomSheetContent(component)
+        }
+    }
+}
+
+@Composable
+private fun TopBar(component: AddNoteComponent) {
+    AdaptiveTopAppBar(
+        title = {
+            Text(text = "ADD NOTE")
+        },
+        navigationIcon = {
+            AdaptiveIconButton(
+                onClick = component::saveNote
+            ) {
+                Icon(imageVector = AdaptiveIcons.Outlined.Close, contentDescription = null)
             }
         }
     )
+
 }
 
 @Composable
