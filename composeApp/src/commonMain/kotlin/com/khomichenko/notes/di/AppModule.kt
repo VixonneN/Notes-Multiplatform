@@ -11,6 +11,7 @@ import com.khomichenko.main.di.MainModule
 import com.khomichenko.network.di.NetworkModule
 import com.khomichenko.onboarding.di.OnboardingModule
 import com.khomichenko.preferences.di.PreferencesModule
+import com.khomichenko.profile.di.ProfileFeatureModule
 import com.khomichenko.registration.di.RegistrationModule
 import com.khomichenko.root.di.RootModule
 import com.khomichenko.settings.di.SettingsFeatureModule
@@ -30,7 +31,8 @@ val AppModule = module {
         EditNoteModule,
         SettingsFeatureModule,
         FavoritesFeatureModule,
-        NetworkModule
+        NetworkModule,
+        ProfileFeatureModule
     )
     single<StoreFactory> { DefaultStoreFactory() }
 }

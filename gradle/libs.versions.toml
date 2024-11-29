@@ -1,40 +1,38 @@
 [versions]
 
-cupertinoDecompose = "0.1.0-alpha04"
-kotlin = "2.0.20"
+kotlin = "2.1.0"
 
-compose = "1.6.11"
-composeImageLoader = "1.7.8"
-compose-uitooling = "1.7.0"
+compose = "1.7.1"
+composeImageLoader = "1.9.0"
+compose-uitooling = "1.7.5"
 
-agp = "8.4.2"
+agp = "8.7.2"
 androidx-appcompat = "1.7.0"
-androidx-activityCompose = "1.9.2"
+androidx-activityCompose = "1.9.3"
 
-decompose = "3.1.0"
-essenty = "2.1.0"
-mvikotlin = "4.1.0"
+decompose = "3.2.0-beta03"
+essenty = "2.2.0-beta01"
+mvikotlin = "4.2.0"
 
-moko = "0.24.0"
-
-kermit = "2.0.4"
+kermit = "2.0.5"
 buildConfig = "5.3.5"
 
-kotlinx-coroutines = "1.9.0-RC"
+kotlinx-coroutines = "1.9.0"
 
-ktor = "2.3.12"
+ktor = "3.0.1"
 
-composeIcons = "1.1.0"
+composeIcons = "1.1.1"
 
-kotlinx-serialization = "1.7.0"
+kotlinx-serialization = "1.7.3"
 
-multiplatformSettings = "1.1.1"
+multiplatformSettings = "1.2.0"
 datastoreCore = "1.1.1"
 
-koin = "3.5.6"
+koin = "4.0.0"
 sqlDelight = "2.0.2"
+room = "2.7.0-alpha09"
 
-supabase = "2.5.2"
+supabase = "3.0.1"
 
 kotlinx-datetime = "0.6.1"
 
@@ -43,10 +41,15 @@ kotlinx-datetime = "0.6.1"
 google-services-plugin = "4.4.2"
 firebase-crashlytics-plugin = "3.0.2"
 #dependency
-firebase-version = "33.2.0"
+firebase-version = "33.6.0"
 ##firebase-ios
 #dependency
-gitlive = "1.13.0"
+gitlive = "2.1.0"
+coreKtx = "1.15.0"
+junit = "4.13.2"
+junitVersion = "1.2.1"
+espressoCore = "3.6.1"
+material = "1.12.0"
 
 [libraries]
 
@@ -54,20 +57,17 @@ gitlive = "1.13.0"
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "androidx-appcompat" }
 androidx-activityCompose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
 
-#navigation decompose
-cupertino-adaptive = { module = "io.github.alexzhirkevich:cupertino-adaptive", version.ref = "cupertinoDecompose" }
-cupertino-decompose = { module = "io.github.alexzhirkevich:cupertino-decompose", version.ref = "cupertinoDecompose" }
-cupertino-icons-extended = { module = "io.github.alexzhirkevich:cupertino-icons-extended", version.ref = "cupertinoDecompose" }
 decompose = { module = "com.arkivanov.decompose:decompose", version.ref = "decompose" }
 decompose-compose = { module = "com.arkivanov.decompose:extensions-compose", version.ref = "decompose" }
+
 #lifecycle
 essenty-lifecycle = { module = "com.arkivanov.essenty:lifecycle", version.ref = "essenty" }
 essenty-coroutines = { module = "com.arkivanov.essenty:lifecycle-coroutines", version.ref = "essenty" }
+
 #mvikotlin
 mvikotlin-core = { module = "com.arkivanov.mvikotlin:mvikotlin", version.ref = "mvikotlin" }
 mvikotlin-main = { module = "com.arkivanov.mvikotlin:mvikotlin-main", version.ref = "mvikotlin" }
 mvikotlin-coroutines = { module = "com.arkivanov.mvikotlin:mvikotlin-extensions-coroutines", version.ref = "mvikotlin" }
-
 
 #logs
 kermit = { module = "co.touchlab:kermit", version.ref = "kermit" }
@@ -86,7 +86,6 @@ ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "kto
 ##supabase
 supabase-gotrue = { module = "io.github.jan-tennert.supabase:gotrue-kt", version.ref = "supabase" }
 supabase-postgrest = { module = "io.github.jan-tennert.supabase:postgrest-kt", version.ref = "supabase" }
-
 
 #compose
 composeIcons-featherIcons = { module = "br.com.devsrsouza.compose.icons:feather", version.ref = "composeIcons" }
@@ -116,11 +115,6 @@ sqlDelight-primitive-adapters = { module = "app.cash.sqldelight:primitive-adapte
 sqlDelight-runtime = { module = "app.cash.sqldelight:runtime", version.ref = "sqlDelight" }
 sqlDelight-coroutine = { module = "app.cash.sqldelight:coroutines-extensions", version.ref = "sqlDelight" }
 
-#resources
-moko-generator = { module = "dev.icerock.moko:resources-generator", version.ref = "moko" }
-moko-core = { module = "dev.icerock.moko:resources", version.ref = "moko" }
-moko-compose = { module = "dev.icerock.moko:resources-compose", version.ref = "moko" }
-
 #date time
 kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinx-datetime" }
 
@@ -135,6 +129,11 @@ gitlive-auth = { module = "dev.gitlive:firebase-auth", version.ref = "gitlive" }
 gitlive-database = { module = "dev.gitlive:firebase-database", version.ref = "gitlive" }
 gitlive-firestore = { module = "dev.gitlive:firebase-firestore", version.ref = "gitlive" }
 gitlive-crashlytics = { module = "dev.gitlive:firebase-crashlytics", version.ref = "gitlive" }
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 
 [plugins]
 
@@ -146,7 +145,7 @@ android-library = { id = "com.android.library", version.ref = "agp" }
 buildConfig = { id = "com.github.gmazzo.buildconfig", version.ref = "buildConfig" }
 kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 sqlDelight = { id = "app.cash.sqldelight", version.ref = "sqlDelight" }
-moko-resources = { id = "dev.icerock.mobile.multiplatform-resources", version.ref = "moko" }
 
 google-services-android = { id = "com.google.gms.google-services", version.ref = "google-services-plugin" }
 firebase-crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "firebase-crashlytics-plugin" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }

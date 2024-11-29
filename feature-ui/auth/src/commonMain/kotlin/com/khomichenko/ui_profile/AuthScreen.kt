@@ -1,7 +1,16 @@
 package com.khomichenko.ui_profile
 
-import androidx.compose.foundation.layout.*
-import androidx.compose.material3.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -13,18 +22,16 @@ import com.khomichenko.auth.component.AuthComponent
 import com.khomichenko.auth.store.AuthStore
 import com.khomichenko.ui_profile.composables.OutlinedLoginField
 import com.khomichenko.ui_profile.composables.OutlinedPasswordField
-import io.github.alexzhirkevich.cupertino.adaptive.AdaptiveScaffold
-import io.github.alexzhirkevich.cupertino.adaptive.ExperimentalAdaptiveApi
 
-@OptIn(ExperimentalAdaptiveApi::class)
 @Composable
 fun AuthScreen(component: AuthComponent) {
     val snackbarState = remember { SnackbarHostState() }
-    AdaptiveScaffold(
+
+    Scaffold(
         snackbarHost = { SnackbarHost(snackbarState) }
     ) {
         AuthContent(component, Modifier.padding(it))
-        
+
         LaunchedEffect(component.events) {
             component.events.collect { event ->
                 when(event) {

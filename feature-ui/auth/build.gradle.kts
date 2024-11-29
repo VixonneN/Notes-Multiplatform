@@ -7,7 +7,6 @@ plugins {
     alias(libs.plugins.kotlinx.serialization)
     alias(libs.plugins.compose)
     alias(libs.plugins.compose.plugin)
-    alias(libs.plugins.moko.resources)
 }
 
 kotlin {
@@ -28,11 +27,6 @@ kotlin {
             implementation(compose.material3)
             implementation(compose.materialIconsExtended)
 
-            implementation(libs.moko.core)
-            implementation(libs.moko.compose)
-
-            implementation(libs.cupertino.adaptive)
-
             implementation(libs.decompose)
 
             implementation(libs.mvikotlin.core)
@@ -49,7 +43,7 @@ kotlin {
 
 android {
     namespace = "com.khomichenko.ui_auth"
-    compileSdk = 34
+    compileSdk = 35
     defaultConfig {
         minSdk = 24
     }

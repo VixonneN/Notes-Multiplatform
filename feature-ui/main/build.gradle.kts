@@ -37,9 +37,7 @@ kotlin {
 
             implementation(libs.koin.core)
 
-            implementation(libs.cupertino.decompose)
-            implementation(libs.cupertino.adaptive)
-            implementation(libs.cupertino.icons.extended)
+            implementation(projects.core.ui)
 
             implementation(projects.feature.main)
             implementation(projects.feature.addNote)
@@ -61,7 +59,7 @@ kotlin {
 
 android {
     namespace = "com.khomichenko.ui_main"
-    compileSdk = 34
+    compileSdk = 35
     defaultConfig {
         minSdk = 24
     }

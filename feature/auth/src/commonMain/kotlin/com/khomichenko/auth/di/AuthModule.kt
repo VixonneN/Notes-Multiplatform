@@ -8,4 +8,5 @@ import org.koin.dsl.module
 
 val AuthModule = module {
     factoryOf(::AuthComponentImpl) { bind<AuthComponent>() }
+    factory<AuthComponent> { AuthComponentImpl(componentContext = get()) }
 }

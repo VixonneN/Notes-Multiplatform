@@ -7,7 +7,6 @@ plugins {
     alias(libs.plugins.kotlinx.serialization)
     alias(libs.plugins.compose)
     alias(libs.plugins.compose.plugin)
-    alias(libs.plugins.moko.resources)
 }
 
 kotlin {
@@ -28,12 +27,8 @@ kotlin {
             implementation(compose.material3)
             implementation(compose.materialIconsExtended)
 
-            implementation(libs.moko.core)
-            implementation(libs.moko.compose)
-
             implementation(libs.decompose)
-
-            implementation(libs.cupertino.adaptive)
+            implementation(libs.decompose.compose)
 
             implementation(libs.mvikotlin.core)
             implementation(libs.mvikotlin.main)
@@ -42,14 +37,15 @@ kotlin {
             implementation(libs.koin.core)
 
             implementation(projects.feature.editNote)
+            implementation(projects.core.ui)
         }
     }
 
 }
 
 android {
-    namespace = "com.khomichenko.edit_note"
-    compileSdk = 34
+    namespace = "com.khomichenko.edit_note_ui"
+    compileSdk = 35
     defaultConfig {
         minSdk = 24
     }

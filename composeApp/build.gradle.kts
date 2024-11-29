@@ -10,7 +10,6 @@ plugins {
     alias(libs.plugins.buildConfig)
     alias(libs.plugins.kotlinx.serialization)
     alias(libs.plugins.sqlDelight)
-    alias(libs.plugins.moko.resources)
     alias(libs.plugins.firebase.crashlytics)
 }
 
@@ -46,10 +45,6 @@ kotlin {
             implementation(compose.material3)
             implementation(compose.materialIconsExtended)
 
-            //resources
-            implementation(libs.moko.core)
-            implementation(libs.moko.compose)
-
             implementation(libs.composeImageLoader)
             implementation(libs.kermit)
 
@@ -66,12 +61,11 @@ kotlin {
             api(libs.essenty.lifecycle)
             api(libs.essenty.coroutines)
 
-            implementation(libs.cupertino.adaptive)
-            
             //core implementation
             implementation(projects.core.preferences)
             implementation(projects.core.database)
             implementation(projects.core.network)
+            implementation(projects.core.ui)
 
             //feature implementation
             implementation(projects.feature.root)
@@ -84,6 +78,7 @@ kotlin {
             implementation(projects.feature.editNote)
             implementation(projects.feature.settings)
             implementation(projects.feature.favorites)
+            implementation(projects.feature.profile)
 
             //ui implementation
             implementation(projects.featureUi.auth)
@@ -112,11 +107,12 @@ kotlin {
 
 android {
     namespace = "com.khomichenko.notes"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         minSdk = 26
-        targetSdk = 34
+        //noinspection EditedTargetSdkVersion
+        targetSdk= 35
 
         applicationId = "com.khomichenko.notes.androidApp"
         versionCode = 1
@@ -142,9 +138,4 @@ android {
 buildConfig {
     // BuildConfig configuration here.
     // https://github.com/gmazzo/gradle-buildconfig-plugin#usage-in-kts
-}
-
-
-multiplatformResources {
-    resourcesPackage.set("com.khomichenko.notes")
 }

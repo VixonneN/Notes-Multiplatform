@@ -43,7 +43,7 @@ kotlin {
 
 android {
     namespace = "com.khomichenko.main"
-    compileSdk = 34
+    compileSdk = 35
     defaultConfig {
         minSdk = 24
     }

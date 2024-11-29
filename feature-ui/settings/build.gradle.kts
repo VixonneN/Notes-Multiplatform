@@ -7,7 +7,6 @@ plugins {
     alias(libs.plugins.kotlinx.serialization)
     alias(libs.plugins.compose)
     alias(libs.plugins.compose.plugin)
-    alias(libs.plugins.moko.resources)
 }
 
 kotlin {
@@ -28,9 +27,6 @@ kotlin {
             implementation(compose.material3)
             implementation(compose.materialIconsExtended)
 
-            implementation(libs.moko.core)
-            implementation(libs.moko.compose)
-
             implementation(libs.decompose)
 
             implementation(libs.mvikotlin.core)
@@ -39,14 +35,15 @@ kotlin {
 
             implementation(libs.koin.core)
 
+            implementation(projects.core.ui)
             implementation(projects.feature.settings)
         }
     }
 }
 
 android {
-    namespace = "com.khomichenko.settings"
-    compileSdk = 34
+    namespace = "com.khomichenko.settings_ui"
+    compileSdk = 35
     defaultConfig {
         minSdk = 24
     }
