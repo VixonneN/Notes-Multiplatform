@@ -14,3 +14,6 @@ Pods/
 *.jks
 *yarn.lock
 .kotlin
+/.kotlin/
+*/google-services.json
+*/google-services.plist

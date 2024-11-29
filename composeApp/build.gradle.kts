@@ -6,10 +6,11 @@ plugins {
     alias(libs.plugins.compose)
     alias(libs.plugins.compose.plugin)
     alias(libs.plugins.android.application)
+    alias(libs.plugins.google.services.android)
     alias(libs.plugins.buildConfig)
     alias(libs.plugins.kotlinx.serialization)
     alias(libs.plugins.sqlDelight)
-    alias(libs.plugins.moko.resources)
+    alias(libs.plugins.firebase.crashlytics)
 }
 
 kotlin {
@@ -44,10 +45,6 @@ kotlin {
             implementation(compose.material3)
             implementation(compose.materialIconsExtended)
 
-            //resources
-            implementation(libs.moko.core)
-            implementation(libs.moko.compose)
-
             implementation(libs.composeImageLoader)
             implementation(libs.kermit)
 
@@ -63,10 +60,12 @@ kotlin {
 
             api(libs.essenty.lifecycle)
             api(libs.essenty.coroutines)
-            
+
             //core implementation
             implementation(projects.core.preferences)
             implementation(projects.core.database)
+            implementation(projects.core.network)
+            implementation(projects.core.ui)
 
             //feature implementation
             implementation(projects.feature.root)
@@ -79,12 +78,15 @@ kotlin {
             implementation(projects.feature.editNote)
             implementation(projects.feature.settings)
             implementation(projects.feature.favorites)
+            implementation(projects.feature.profile)
 
             //ui implementation
             implementation(projects.featureUi.auth)
             implementation(projects.featureUi.onboarding)
             implementation(projects.featureUi.main)
             implementation(projects.featureUi.registration)
+
+            api(libs.gitlive.crashlytics)
         }
 
         commonTest.dependencies {
@@ -96,17 +98,21 @@ kotlin {
             implementation(libs.androidx.activityCompose)
 
             implementation(libs.koin.android)
+
+            implementation(project.dependencies.platform(libs.firebase.boom))
+            implementation(libs.firebase.crashlytics)
         }
     }
 }
 
 android {
     namespace = "com.khomichenko.notes"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         minSdk = 26
-        targetSdk = 34
+        //noinspection EditedTargetSdkVersion
+        targetSdk= 35
 
         applicationId = "com.khomichenko.notes.androidApp"
         versionCode = 1
@@ -132,9 +138,4 @@ android {
 buildConfig {
     // BuildConfig configuration here.
     // https://github.com/gmazzo/gradle-buildconfig-plugin#usage-in-kts
-}
-
-
-multiplatformResources {
-    resourcesPackage.set("com.khomichenko.fitness")
 }

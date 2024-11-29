@@ -1,8 +1,10 @@
+@file:OptIn(ExperimentalMaterial3Api::class)
+
 package com.khomichenko.ui_main
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -12,59 +14,68 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import com.arkivanov.decompose.extensions.compose.stack.Children
 import com.arkivanov.decompose.extensions.compose.subscribeAsState
 import com.khomichenko.edit_note.EditNoteScreen
 import com.khomichenko.favorites.FavoritesScreen
 import com.khomichenko.main.component.MainComponent
+import com.khomichenko.main.component.MainComponent.ChildBottomNavigation
+import com.khomichenko.main.component.MainComponent.SlotChild
 import com.khomichenko.settings.SettingsScreen
+import com.khomichenko.ui.components.BottomSheet3Layout
+import com.khomichenko.ui.components.rememberSlotModalBottomSheet3State
 import com.khomichenko.ui_add_note.AddNoteScreen
 import com.khomichenko.ui_note.ListNotesScreen
+import com.khomichenko.ui_profile.ProfileRootScreen
 
 @Composable
 fun MainScreen(component: MainComponent) {
-    Scaffold(
-        bottomBar = {
-            NotesBottomNavigation(component)
-        },
-        topBar = {
-            MainTopBar(component = component)
+    val state = rememberSlotModalBottomSheet3State(
+        slot = component.slot,
+        sheetContent = {
+            when (val child = it.instance) {
+                is SlotChild.AddNote -> AddNoteScreen(child.component)
+                is SlotChild.Settings -> SettingsScreen(child.component)
+                is SlotChild.ShowNote -> EditNoteScreen(child.component)
+            }
         }
+    )
+
+    Scaffold(
+        topBar = { MainTopBar(component) },
+        bottomBar = { NotesBottomNavigation(component) }
     ) { paddingValues ->
         Children(
             stack = component.stack,
             modifier = Modifier.padding(paddingValues)
         ) {
             when (val child = it.instance) {
-                is MainComponent.ChildBottomNavigation.ListNotes -> ListNotesScreen(child.component)
-                is MainComponent.ChildBottomNavigation.FavoritesNotes -> FavoritesScreen(child.component)
-                is MainComponent.ChildBottomNavigation.Profile -> TODO()
+                is ChildBottomNavigation.ListNotes -> ListNotesScreen(child.component)
+                is ChildBottomNavigation.FavoritesNotes -> FavoritesScreen(child.component)
+                is ChildBottomNavigation.Profile -> ProfileRootScreen(child.component)
             }
         }
     }
 
-    val slotChild by component.slot.subscribeAsState()
-    slotChild.child?.instance?.also { slot ->
-        when (slot) {
-            is MainComponent.SlotChild.AddNote -> AddNoteScreen(slot.component)
-            is MainComponent.SlotChild.Settings -> SettingsScreen(slot.component)
-            is MainComponent.SlotChild.ShowNote -> EditNoteScreen(slot.component)
-        }
-    }
+    BottomSheet3Layout(
+        isVisible = state.isVisible.value,
+        content = state.sheetContent.value,
+        onDismiss = remember { { component.dismissSlotChild() } },
+        dragHandle = null
+    )
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun MainTopBar(component: MainComponent) {
     val currentComponent = component.stack.subscribeAsState().value.active.instance
 
     //todo resources
     val title: String = when (currentComponent) {
-        is MainComponent.ChildBottomNavigation.FavoritesNotes -> "Favorites"
-        is MainComponent.ChildBottomNavigation.ListNotes -> "Your notes"
-        is MainComponent.ChildBottomNavigation.Profile -> "Profile"
+        is ChildBottomNavigation.FavoritesNotes -> "Favorites"
+        is ChildBottomNavigation.ListNotes -> "Your notes"
+        is ChildBottomNavigation.Profile -> "Profile"
     }
 
     TopAppBar(
@@ -75,7 +86,7 @@ private fun MainTopBar(component: MainComponent) {
             IconButton(
                 onClick = component::openSettingsSlot
             ) {
-                Icon(imageVector = Icons.Default.Settings, contentDescription = null)
+                Icon(imageVector = Icons.Default.Close, contentDescription = "close")
             }
         }
     )
@@ -93,7 +104,6 @@ private fun NotesBottomNavigation(component: MainComponent) {
             NavigationBarItem(
                 selected = index == currentComponent.value,
                 onClick = { component.onShelfSelect(index) },
-                alwaysShowLabel = false,
                 label = {
                     Text(text = string)
                 },

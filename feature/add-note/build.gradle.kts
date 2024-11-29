@@ -38,7 +38,7 @@ kotlin {
 
 android {
     namespace = "com.khomichenko.add_note"
-    compileSdk = 34
+    compileSdk = 35
     defaultConfig {
         minSdk = 24
     }

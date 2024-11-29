@@ -7,7 +7,6 @@ plugins {
     alias(libs.plugins.kotlinx.serialization)
     alias(libs.plugins.compose)
     alias(libs.plugins.compose.plugin)
-    alias(libs.plugins.moko.resources)
 }
 
 kotlin {
@@ -30,9 +29,6 @@ kotlin {
 
             implementation(libs.decompose)
 
-            implementation(libs.moko.core)
-            implementation(libs.moko.compose)
-
             implementation(libs.mvikotlin.core)
             implementation(libs.mvikotlin.main)
             implementation(libs.mvikotlin.coroutines)
@@ -47,7 +43,7 @@ kotlin {
 
 android {
     namespace = "com.khomichenko.ui_registration"
-    compileSdk = 34
+    compileSdk = 35
     defaultConfig {
         minSdk = 24
     }

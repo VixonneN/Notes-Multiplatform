@@ -23,28 +23,18 @@ kotlin {
         commonMain.dependencies {
             implementation(libs.kotlinx.coroutines.core)
 
-            implementation(libs.ktor.core)
-            implementation(libs.ktor.client.logging)
-            implementation(libs.ktor.client.content.negotiation)
-            implementation(libs.ktor.serialization.kotlinx)
+            implementation(libs.gitlive.auth)
+            implementation(libs.gitlive.firestore)
 
-            implementation(libs.supabase.gotrue)
-            implementation(libs.supabase.postgrest)
-        }
-
-        androidMain.dependencies {
-            implementation(libs.ktor.client.okhttp)
-        }
-
-        iosMain.dependencies {
-            implementation(libs.ktor.client.darwin)
+            implementation(libs.kermit)
+            implementation(libs.koin.core)
         }
     }
 }
 
 android {
     namespace = "com.khomichenko.network"
-    compileSdk = 34
+    compileSdk = 35
     defaultConfig {
         minSdk = 24
     }

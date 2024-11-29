@@ -7,7 +7,6 @@ plugins {
     alias(libs.plugins.kotlinx.serialization)
     alias(libs.plugins.compose)
     alias(libs.plugins.compose.plugin)
-    alias(libs.plugins.moko.resources)
 }
 
 kotlin {
@@ -28,9 +27,8 @@ kotlin {
             implementation(compose.material3)
             implementation(compose.components.uiToolingPreview)
             implementation(compose.materialIconsExtended)
-
-            implementation(libs.moko.core)
-            implementation(libs.moko.compose)
+            implementation(compose.ui)
+            implementation(compose.components.resources)
 
             implementation(libs.decompose)
 
@@ -41,6 +39,7 @@ kotlin {
             implementation(libs.koin.core)
 
             implementation(projects.feature.onboarding)
+            api(projects.core.ui)
         }
     }
 
@@ -48,7 +47,7 @@ kotlin {
 
 android {
     namespace = "com.khomichenko.ui_onboarding"
-    compileSdk = 34
+    compileSdk = 35
     defaultConfig {
         minSdk = 24
     }

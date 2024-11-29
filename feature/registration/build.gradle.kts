@@ -29,13 +29,18 @@ kotlin {
             implementation(libs.mvikotlin.coroutines)
 
             implementation(libs.koin.core)
+
+            implementation(libs.kotlinx.coroutines.core)
+
+            implementation(projects.core.network)
+            implementation(projects.core.preferences)
         }
     }
 }
 
 android {
     namespace = "com.khomichenko.registration"
-    compileSdk = 34
+    compileSdk = 35
     defaultConfig {
         minSdk = 24
     }

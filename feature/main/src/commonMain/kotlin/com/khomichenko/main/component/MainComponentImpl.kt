@@ -17,6 +17,7 @@ import com.khomichenko.edit_note.component.EditNoteComponent
 import com.khomichenko.favorites.component.FavoritesComponent
 import com.khomichenko.main.component.MainComponent.*
 import com.khomichenko.notes.component.NotesComponent
+import com.khomichenko.profile.component.ProfileRootComponent
 import com.khomichenko.settings.component.SettingsComponent
 import kotlinx.serialization.Serializable
 import org.koin.core.component.KoinComponent
@@ -75,6 +76,14 @@ internal class MainComponentImpl(
         }
     )
 
+    private fun profile(componentContext: ComponentContext) = get<ProfileRootComponent>(
+        parameters = {
+            parametersOf(
+                componentContext
+            )
+        }
+    )
+
     private val stackNavigation = StackNavigation<StackConfig>()
     private val slotNavigation = SlotNavigation<SlotConfig>()
 
@@ -86,7 +95,7 @@ internal class MainComponentImpl(
         when (configuration) {
             StackConfig.ListNotes -> ChildBottomNavigation.ListNotes(listNotes(componentContext))
             StackConfig.Favorites -> ChildBottomNavigation.FavoritesNotes(favoritesNotes(componentContext))
-            StackConfig.Profile -> TODO()
+            StackConfig.Profile -> ChildBottomNavigation.Profile(profile(componentContext))
         }
     }
 

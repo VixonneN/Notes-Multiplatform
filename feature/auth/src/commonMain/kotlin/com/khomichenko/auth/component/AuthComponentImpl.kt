@@ -4,8 +4,9 @@ import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.mvikotlin.core.instancekeeper.getStore
 import com.arkivanov.mvikotlin.extensions.coroutines.labels
 import com.arkivanov.mvikotlin.extensions.coroutines.stateFlow
-import com.khomichenko.auth.store.AuthStore
-import com.khomichenko.auth.store.AuthStore.*
+import com.khomichenko.auth.store.AuthStore.Intent
+import com.khomichenko.auth.store.AuthStore.Label
+import com.khomichenko.auth.store.AuthStore.State
 import com.khomichenko.auth.store.AuthStoreFactory
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
@@ -20,7 +21,8 @@ internal class AuthComponentImpl(
     private val store = instanceKeeper.getStore {
         AuthStoreFactory(
             storeFactory = get(),
-            preferenceRepository = get()
+            preferenceRepository = get(),
+            authRepository = get()
         ).create()
     }
     

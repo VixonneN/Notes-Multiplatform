@@ -35,6 +35,7 @@ kotlin {
             implementation(projects.feature.editNote)
             implementation(projects.feature.settings)
             implementation(projects.feature.favorites)
+            implementation(projects.feature.profile)
         }
     }
 
@@ -42,7 +43,7 @@ kotlin {
 
 android {
     namespace = "com.khomichenko.main"
-    compileSdk = 34
+    compileSdk = 35
     defaultConfig {
         minSdk = 24
     }

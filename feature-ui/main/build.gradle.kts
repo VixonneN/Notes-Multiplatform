@@ -37,25 +37,29 @@ kotlin {
 
             implementation(libs.koin.core)
 
+            implementation(projects.core.ui)
+
             implementation(projects.feature.main)
             implementation(projects.feature.addNote)
             implementation(projects.feature.notes)
             implementation(projects.feature.editNote)
             implementation(projects.feature.settings)
             implementation(projects.feature.favorites)
+            implementation(projects.feature.profile)
 
             implementation(projects.featureUi.addNote)
             implementation(projects.featureUi.note)
             implementation(projects.featureUi.editNote)
             implementation(projects.featureUi.settings)
             implementation(projects.featureUi.favorites)
+            implementation(projects.featureUi.profile)
         }
     }
 }
 
 android {
     namespace = "com.khomichenko.ui_main"
-    compileSdk = 34
+    compileSdk = 35
     defaultConfig {
         minSdk = 24
     }

@@ -6,15 +6,15 @@ import com.arkivanov.decompose.extensions.compose.stack.Children
 import com.arkivanov.decompose.extensions.compose.stack.animation.slide
 import com.arkivanov.decompose.extensions.compose.stack.animation.stackAnimation
 import com.arkivanov.essenty.lifecycle.LifecycleOwner
-import com.khomichenko.notes.theme.AppTheme
 import com.khomichenko.root.component.RootComponent
-import com.khomichenko.ui_auth.AuthScreen
+import com.khomichenko.ui.theme.CustomNotesTheme
 import com.khomichenko.ui_main.MainScreen
 import com.khomichenko.ui_onboarding.OnboardingScreen
+import com.khomichenko.ui_profile.AuthScreen
 import com.khomichenko.ui_registration.RegistrationScreen
 
 @Composable
-internal fun RootScreen(rootComponent: RootComponent) = AppTheme {
+internal fun RootScreen(rootComponent: RootComponent) = CustomNotesTheme {
     Children(
         stack = rootComponent.stack,
         animation = stackAnimation(slide())
@@ -22,6 +22,7 @@ internal fun RootScreen(rootComponent: RootComponent) = AppTheme {
         when (val child = it.instance) {
             is RootComponent.Child.Auth -> AuthScreen(child.component)
             is RootComponent.Child.Main -> MainScreen(child.component)
+//            is RootComponent.Child.Main -> SomeMain()
             is RootComponent.Child.Onboarding -> OnboardingScreen(child.component)
             is RootComponent.Child.Registration -> RegistrationScreen(child.component)
         }
@@ -30,5 +31,3 @@ internal fun RootScreen(rootComponent: RootComponent) = AppTheme {
 
 //todo in core:utils
 val MainLifecycleOwner = compositionLocalOf<LifecycleOwner> { error("No lifecycle found") }
-
-
