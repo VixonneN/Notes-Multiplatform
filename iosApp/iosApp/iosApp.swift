@@ -14,7 +14,6 @@ struct iosApp: App {
             ContentView()
         }
     }
-    
 }
 
 struct ContentView: View {

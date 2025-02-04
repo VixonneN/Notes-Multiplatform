@@ -1,7 +1,7 @@
 package com.khomichenko.favorites.store
 
 import com.arkivanov.mvikotlin.core.store.Store
-import com.khomichenko.database.entity.NoteEntity
+import com.khomichenko.database.room.entity.NoteEntity
 import com.khomichenko.favorites.store.FavoritesStore.Intent
 import com.khomichenko.favorites.store.FavoritesStore.State
 

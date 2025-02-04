@@ -5,16 +5,19 @@ import com.arkivanov.mvikotlin.core.store.Store
 import com.arkivanov.mvikotlin.core.store.StoreFactory
 import com.arkivanov.mvikotlin.extensions.coroutines.CoroutineBootstrapper
 import com.arkivanov.mvikotlin.extensions.coroutines.CoroutineExecutor
-import com.khomichenko.database.entity.NoteEntity
-import com.khomichenko.database.repository.NotesDatabaseRepository
-import com.khomichenko.edit_note.store.EditNoteStore.*
+import com.khomichenko.database.room.entity.NoteEntity
+import com.khomichenko.database.room.repository.NotesDatabaseRepository
+import com.khomichenko.edit_note.store.EditNoteStore.Action
+import com.khomichenko.edit_note.store.EditNoteStore.Intent
+import com.khomichenko.edit_note.store.EditNoteStore.Result
+import com.khomichenko.edit_note.store.EditNoteStore.State
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
 internal class EditNoteStoreFactory(
     private val storeFactory: StoreFactory,
     private val databaseRepository: NotesDatabaseRepository,
-    private val idNote: Int
+    private val idNote: Long
 ) {
 
     fun create() : EditNoteStore =

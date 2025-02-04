@@ -5,7 +5,7 @@ import com.arkivanov.mvikotlin.core.store.Store
 import com.arkivanov.mvikotlin.core.store.StoreFactory
 import com.arkivanov.mvikotlin.extensions.coroutines.CoroutineBootstrapper
 import com.arkivanov.mvikotlin.extensions.coroutines.CoroutineExecutor
-import com.khomichenko.database.repository.NotesDatabaseRepository
+import com.khomichenko.database.room.repository.NotesDatabaseRepository
 import com.khomichenko.notes.store.NotesStore.Action
 import com.khomichenko.notes.store.NotesStore.Intent
 import com.khomichenko.notes.store.NotesStore.Result

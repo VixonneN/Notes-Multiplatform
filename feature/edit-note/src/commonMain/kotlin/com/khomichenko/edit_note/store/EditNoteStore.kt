@@ -1,15 +1,16 @@
 package com.khomichenko.edit_note.store
 
 import com.arkivanov.mvikotlin.core.store.Store
-import com.khomichenko.database.entity.NoteEntity
-import com.khomichenko.edit_note.store.EditNoteStore.*
+import com.khomichenko.database.room.entity.NoteEntity
+import com.khomichenko.edit_note.store.EditNoteStore.Intent
+import com.khomichenko.edit_note.store.EditNoteStore.State
 
 interface EditNoteStore : Store<Intent, State, Nothing> {
 
     sealed interface Intent
 
     data class State(
-        val id: Int = 0,
+        val id: Long = 0,
         val title: String = "",
         val note: String = "",
         val lastTimeChanged: String = ""
@@ -21,7 +22,7 @@ interface EditNoteStore : Store<Intent, State, Nothing> {
 
     sealed interface Result {
         data class NoteAdded(
-            val id: Int,
+            val id: Long,
             val title: String,
             val note: String,
             val lastTimeChanged: String

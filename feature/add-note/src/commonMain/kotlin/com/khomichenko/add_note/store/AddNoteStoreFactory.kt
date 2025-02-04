@@ -6,8 +6,8 @@ import com.arkivanov.mvikotlin.core.store.Store
 import com.arkivanov.mvikotlin.core.store.StoreFactory
 import com.arkivanov.mvikotlin.extensions.coroutines.CoroutineExecutor
 import com.khomichenko.add_note.store.AddNoteStore.*
-import com.khomichenko.database.entity.NoteEntity
-import com.khomichenko.database.repository.NotesDatabaseRepository
+import com.khomichenko.database.room.entity.NoteEntity
+import com.khomichenko.database.room.repository.NotesDatabaseRepository
 import kotlinx.coroutines.launch
 
 internal class AddNoteStoreFactory(
@@ -48,7 +48,7 @@ internal class AddNoteStoreFactory(
             println("saveNote in store")
             val noteEntity = NoteEntity(title = title, note = note, lastDateChanging = "")
             println(noteEntity.toString())
-            databaseRepository.insertNote(noteEntity)
+            databaseRepository.upsertNote(noteEntity)
         }
     }
 

@@ -2,15 +2,12 @@ package com.khomichenko.notes.component
 
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.mvikotlin.core.instancekeeper.getStore
-import com.arkivanov.mvikotlin.extensions.coroutines.stateFlow
 import com.arkivanov.mvikotlin.extensions.coroutines.states
-import com.khomichenko.notes.component.NotesComponent.*
+import com.khomichenko.notes.component.NotesComponent.Model
 import com.khomichenko.notes.mapper.toNote
 import com.khomichenko.notes.store.NotesStore
 import com.khomichenko.notes.store.NotesStoreFactory
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.get
@@ -18,7 +15,7 @@ import org.koin.core.component.get
 internal class NotesComponentImpl(
     componentContext: ComponentContext,
     private val openAddNoteSlot:() -> Unit,
-    private val openEditNoteSlot:(id: Int) -> Unit
+    private val openEditNoteSlot:(id: Long) -> Unit
 ) : NotesComponent, KoinComponent, ComponentContext by componentContext {
 
     private val store = instanceKeeper.getStore {
@@ -43,7 +40,7 @@ internal class NotesComponentImpl(
         openAddNoteSlot()
     }
 
-    override fun openEditSlotComponent(id: Int) {
+    override fun openEditSlotComponent(id: Long) {
         openEditNoteSlot(id)
     }
 }
