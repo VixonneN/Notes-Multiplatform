@@ -32,8 +32,7 @@ kotlin {
             implementation(libs.koin.core)
 
             implementation(projects.core.preferences)
-            implementation(projects.core.database)
-            implementation(projects.core.database)
+            implementation(projects.core.databaseRoom)
 
             implementation(projects.feature.auth)
             implementation(projects.feature.registration)

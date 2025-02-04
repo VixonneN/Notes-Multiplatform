@@ -24,7 +24,7 @@ include(":composeApp")
 
 include(":core:network")
 include(":core:preferences")
-include(":core:database")
+//include(":core:database")
 
 include(":feature:onboarding")
 include(":feature:root")
@@ -49,3 +49,4 @@ include(":feature-ui:settings")
 include(":feature-ui:favorites")
 include(":feature-ui:profile")
 include(":core:ui")
+include(":core:database-room")

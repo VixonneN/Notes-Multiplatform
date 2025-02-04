@@ -1,13 +1,13 @@
-package com.khomichenko.database.repository
+package com.khomichenko.database.room.repository
 
-import com.khomichenko.database.entity.NoteEntity
+import com.khomichenko.database.room.entity.NoteEntity
 import kotlinx.coroutines.flow.Flow
 
 interface NotesDatabaseRepository {
     fun getAllNotes(): Flow<List<NoteEntity>>
-    fun getNoteById(id: Int): Flow<NoteEntity>
+    fun getNoteById(id: Long): Flow<NoteEntity>
 
-    suspend fun insertNote(note: NoteEntity)
+    suspend fun upsertNote(note: NoteEntity)
     suspend fun deleteNote(note: NoteEntity)
 
 }

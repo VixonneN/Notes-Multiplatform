@@ -1,49 +1,24 @@
-package com.khomichenko.database.repository
+package com.khomichenko.database.room.repository
 
-import app.cash.sqldelight.coroutines.asFlow
-import com.khomichenko.database.db.notesCacheDatabase
-import com.khomichenko.database.entity.NoteEntity
-import com.khomichenko.database.mappers.toDBO
-import com.khomichenko.database.mappers.toEntity
-import com.khomichenko.database.utils.mapToList
-import com.khomichenko.database.utils.mapToOne
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.IO
+import com.khomichenko.database.room.dao.NoteDao
+import com.khomichenko.database.room.entity.NoteEntity
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flowOn
-import kotlinx.coroutines.flow.map
 
 internal class NotesDatabaseRepositoryImpl(
-    database: notesCacheDatabase
+    private val dao: NoteDao
 ) : NotesDatabaseRepository {
 
-    private val databaseQuery = database.notesCacheDBOQueries
     override fun getAllNotes(): Flow<List<NoteEntity>> =
-        databaseQuery.getAllNotes()
-            .asFlow()
-            .mapToList()
-            .map { list -> list.map { noteDBO -> noteDBO.toEntity() } }
-            .flowOn(Dispatchers.IO)
+        dao.getAllNotes()
 
-    override fun getNoteById(id: Int): Flow<NoteEntity> =
-        databaseQuery.getNoteById(id)
-            .asFlow()
-            .mapToOne()
-            .map { noteDBO -> noteDBO.toEntity() }
+    override fun getNoteById(id: Long): Flow<NoteEntity> =
+        dao.selectNoteById(id)
 
-    override suspend fun insertNote(note: NoteEntity) {
-        note.toDBO().let {
-            databaseQuery.insertNote(
-                title = it.title,
-                note = it.note,
-                last_date_changing = it.last_date_changing
-            )
-        }
+    override suspend fun upsertNote(note: NoteEntity) {
+        dao.upsertNote(note)
     }
 
     override suspend fun deleteNote(note: NoteEntity) {
-        note.id.let {
-            databaseQuery.deleteNote(note.id)
-        }
+        dao.deleteNote(note)
     }
 }

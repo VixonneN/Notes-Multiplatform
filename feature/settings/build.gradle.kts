@@ -31,7 +31,7 @@ kotlin {
             implementation(libs.koin.core)
 
             implementation(projects.core.preferences)
-            implementation(projects.core.database)
+            implementation(projects.core.databaseRoom)
         }
     }
 }

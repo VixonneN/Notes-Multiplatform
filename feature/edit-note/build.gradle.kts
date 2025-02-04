@@ -32,7 +32,7 @@ kotlin {
 
             implementation(libs.kotlinx.coroutines.core)
 
-            implementation(projects.core.database)
+            implementation(projects.core.databaseRoom)
         }
     }
 

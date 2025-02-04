@@ -31,7 +31,7 @@ internal class NotesDatabaseRepositoryImpl(
             .mapToOne()
             .map { noteDBO -> noteDBO.toEntity() }
 
-    override suspend fun insertNote(note: NoteEntity) {
+    override suspend fun upsertNote(note: NoteEntity) {
         note.toDBO().let {
             databaseQuery.insertNote(
                 title = it.title,

@@ -1,8 +1,8 @@
 package com.khomichenko.add_note.store
 
 import com.arkivanov.mvikotlin.core.store.Store
-import com.khomichenko.database.entity.NoteEntity
-import com.khomichenko.add_note.store.AddNoteStore.*
+import com.khomichenko.add_note.store.AddNoteStore.Intent
+import com.khomichenko.add_note.store.AddNoteStore.State
 
 interface AddNoteStore: Store<Intent, State, Nothing> {
 

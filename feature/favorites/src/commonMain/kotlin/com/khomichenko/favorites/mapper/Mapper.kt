@@ -1,6 +1,7 @@
 package com.khomichenko.favorites.mapper
 
-import com.khomichenko.database.entity.NoteEntity
+import com.khomichenko.database.room.entity.NoteEntity
+
 
 fun NoteEntity.toNote() =
     Note(

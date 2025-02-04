@@ -4,7 +4,7 @@ import com.arkivanov.mvikotlin.core.store.StoreFactory
 import com.arkivanov.mvikotlin.main.store.DefaultStoreFactory
 import com.khomichenko.add_note.di.AddNoteFeatureModule
 import com.khomichenko.auth.di.AuthModule
-import com.khomichenko.database.di.DatabaseCommonModule
+import com.khomichenko.database.room.di.databaseRoomModule
 import com.khomichenko.edit_note.di.EditNoteModule
 import com.khomichenko.favorites.di.FavoritesFeatureModule
 import com.khomichenko.main.di.MainModule
@@ -25,14 +25,14 @@ val AppModule = module {
         OnboardingModule,
         RegistrationModule,
         PreferencesModule,
-        DatabaseCommonModule,
         NotesFeatureModule,
         AddNoteFeatureModule,
         EditNoteModule,
         SettingsFeatureModule,
         FavoritesFeatureModule,
         NetworkModule,
-        ProfileFeatureModule
+        ProfileFeatureModule,
+        databaseRoomModule
     )
     single<StoreFactory> { DefaultStoreFactory() }
 }

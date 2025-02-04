@@ -5,8 +5,11 @@ import com.arkivanov.mvikotlin.core.store.Store
 import com.arkivanov.mvikotlin.core.store.StoreFactory
 import com.arkivanov.mvikotlin.extensions.coroutines.CoroutineBootstrapper
 import com.arkivanov.mvikotlin.extensions.coroutines.CoroutineExecutor
-import com.khomichenko.database.repository.NotesDatabaseRepository
-import com.khomichenko.favorites.store.FavoritesStore.*
+import com.khomichenko.database.room.repository.NotesDatabaseRepository
+import com.khomichenko.favorites.store.FavoritesStore.Action
+import com.khomichenko.favorites.store.FavoritesStore.Intent
+import com.khomichenko.favorites.store.FavoritesStore.Result
+import com.khomichenko.favorites.store.FavoritesStore.State
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 

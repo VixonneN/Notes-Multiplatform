@@ -9,5 +9,5 @@ plugins {
     alias(libs.plugins.compose.plugin).apply(false)
     alias(libs.plugins.google.services.android).apply(false)
     alias(libs.plugins.firebase.crashlytics).apply(false)
-    alias(libs.plugins.kotlin.android) apply false
+//    alias(libs.plugins.ksp).apply(false)
 }

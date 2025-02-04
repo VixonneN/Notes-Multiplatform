@@ -20,10 +20,10 @@ internal fun OutlinedLoginField(
     onTextChange: (String) -> Unit,
     isError: Boolean = false,
     keyboardOptions: KeyboardOptions = KeyboardOptions(
-        imeAction = ImeAction.Next,
         capitalization = KeyboardCapitalization.None,
+        autoCorrectEnabled = false,
         keyboardType = KeyboardType.Text,
-        autoCorrect = false
+        imeAction = ImeAction.Next
     ),
     trailingIcon: @Composable (() -> Unit)? = null,
     enabled: Boolean = true,
@@ -55,7 +55,7 @@ fun OutlinedPasswordField(
     onTrailingClick: () -> Unit,
     keyboardOptions: KeyboardOptions = KeyboardOptions(
         capitalization = KeyboardCapitalization.None,
-        autoCorrect = false,
+        autoCorrectEnabled = false,
         keyboardType = KeyboardType.Password,
         imeAction = ImeAction.Done
     ),
