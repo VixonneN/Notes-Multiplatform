@@ -10,7 +10,7 @@ interface EditNoteStore : Store<Intent, State, Nothing> {
     sealed interface Intent
 
     data class State(
-        val id: Long = 0,
+        val id: String = "",
         val title: String = "",
         val note: String = "",
         val lastTimeChanged: String = ""
@@ -22,7 +22,7 @@ interface EditNoteStore : Store<Intent, State, Nothing> {
 
     sealed interface Result {
         data class NoteAdded(
-            val id: Long,
+            val id: String,
             val title: String,
             val note: String,
             val lastTimeChanged: String

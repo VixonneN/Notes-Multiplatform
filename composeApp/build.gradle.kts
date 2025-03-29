@@ -81,12 +81,6 @@ kotlin {
             implementation(projects.feature.favorites)
             implementation(projects.feature.profile)
 
-            //ui implementation
-            implementation(projects.featureUi.auth)
-            implementation(projects.featureUi.onboarding)
-            implementation(projects.featureUi.main)
-            implementation(projects.featureUi.registration)
-
             api(libs.gitlive.crashlytics)
         }
 

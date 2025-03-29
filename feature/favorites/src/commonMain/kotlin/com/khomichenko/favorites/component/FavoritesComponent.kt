@@ -12,5 +12,5 @@ interface FavoritesComponent {
     val state: Flow<Model>
 
     fun openBottomSheetComponent()
-    fun openEditSlotComponent(id: Long)
+    fun openEditSlotComponent(id: String)
 }

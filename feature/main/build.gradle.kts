@@ -5,6 +5,8 @@ plugins {
     alias(libs.plugins.multiplatform)
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlinx.serialization)
+    alias(libs.plugins.compose)
+    alias(libs.plugins.compose.plugin)
 }
 
 kotlin {
@@ -21,14 +23,20 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-
             implementation(libs.decompose)
+            implementation(libs.decompose.compose)
+
+            implementation(compose.runtime)
+            implementation(compose.ui)
+            implementation(compose.material3)
 
             implementation(libs.mvikotlin.core)
             implementation(libs.mvikotlin.main)
             implementation(libs.mvikotlin.coroutines)
 
             implementation(libs.koin.core)
+
+            implementation(projects.core.ui)
 
             implementation(projects.feature.notes)
             implementation(projects.feature.addNote)

@@ -11,6 +11,8 @@ import com.google.firebase.Firebase
 import com.google.firebase.initialize
 import com.khomichenko.notes.di.AppModule
 import com.khomichenko.root.component.RootComponent
+import com.khomichenko.root.ui.MainLifecycleOwner
+import com.khomichenko.root.ui.RootScreen
 import org.koin.android.ext.android.inject
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin

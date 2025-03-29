@@ -17,7 +17,7 @@ import kotlinx.coroutines.flow.onEach
 internal class EditNoteStoreFactory(
     private val storeFactory: StoreFactory,
     private val databaseRepository: NotesDatabaseRepository,
-    private val idNote: Long
+    private val idNote: String
 ) {
 
     fun create() : EditNoteStore =

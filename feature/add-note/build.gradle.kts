@@ -1,14 +1,14 @@
-import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     alias(libs.plugins.multiplatform)
     alias(libs.plugins.android.library)
+    alias(libs.plugins.compose)
+    alias(libs.plugins.compose.plugin)
 }
 
 kotlin {
     androidTarget {
-        @OptIn(ExperimentalKotlinGradlePluginApi::class)
         compilerOptions {
             jvmTarget.set(JvmTarget.JVM_17)
         }
@@ -21,6 +21,10 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             implementation(libs.decompose)
+
+            implementation(compose.runtime)
+            implementation(compose.ui)
+            implementation(compose.material3)
 
             implementation(libs.mvikotlin.core)
             implementation(libs.mvikotlin.main)

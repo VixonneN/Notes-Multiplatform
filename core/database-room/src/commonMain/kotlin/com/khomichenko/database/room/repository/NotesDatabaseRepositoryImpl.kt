@@ -11,7 +11,7 @@ internal class NotesDatabaseRepositoryImpl(
     override fun getAllNotes(): Flow<List<NoteEntity>> =
         dao.getAllNotes()
 
-    override fun getNoteById(id: Long): Flow<NoteEntity> =
+    override fun getNoteById(id: String): Flow<NoteEntity> =
         dao.selectNoteById(id)
 
     override suspend fun upsertNote(note: NoteEntity) {

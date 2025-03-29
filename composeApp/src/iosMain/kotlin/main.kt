@@ -1,7 +1,7 @@
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.window.ComposeUIViewController
-import com.khomichenko.notes.MainLifecycleOwner
-import com.khomichenko.notes.RootScreen
+import com.khomichenko.root.ui.MainLifecycleOwner
+import com.khomichenko.root.ui.RootScreen
 import com.khomichenko.root.component.RootComponent
 import dev.gitlive.firebase.Firebase
 import dev.gitlive.firebase.initialize

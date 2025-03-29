@@ -19,29 +19,19 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-//            implementation(libs.sqlDelight.runtime)
-//            implementation(libs.sqlDelight.coroutine)
-//            implementation(libs.sqlDelight.primitive.adapters)
             implementation(libs.androidx.room.runtime)
 
 
             implementation(libs.kotlinx.datetime)
+            implementation(libs.androidx.sqlite.bundled)
 
             implementation(libs.koin.core)
         }
-//        commonTest.dependencies {
-//            implementation(libs.kotlin.test)
-//        }
         androidMain.dependencies {
-            //database
-//            implementation(libs.sqlDelight.driver.android)
-
-            //di
             implementation(libs.koin.android)
 
         }
         iosMain.dependencies {
-//            implementation(libs.sqlDelight.driver.native)
         }
     }
 }

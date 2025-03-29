@@ -11,7 +11,7 @@ import org.koin.core.component.get
 
 internal class EditNoteComponentImpl(
     componentContext: ComponentContext,
-    private val idNote: Long,
+    private val idNote: String,
     private val closeSlotComponent:() -> Unit
 ) : EditNoteComponent, KoinComponent, ComponentContext by componentContext {
 

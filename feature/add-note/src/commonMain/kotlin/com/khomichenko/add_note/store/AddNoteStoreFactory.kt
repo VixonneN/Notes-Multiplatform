@@ -9,6 +9,8 @@ import com.khomichenko.add_note.store.AddNoteStore.*
 import com.khomichenko.database.room.entity.NoteEntity
 import com.khomichenko.database.room.repository.NotesDatabaseRepository
 import kotlinx.coroutines.launch
+import kotlin.uuid.ExperimentalUuidApi
+import kotlin.uuid.Uuid
 
 internal class AddNoteStoreFactory(
     private val storeFactory: StoreFactory,
@@ -44,9 +46,15 @@ internal class AddNoteStoreFactory(
             }
         }
 
+        @OptIn(ExperimentalUuidApi::class)
         private suspend fun saveNote(title: String, note: String) {
             println("saveNote in store")
-            val noteEntity = NoteEntity(title = title, note = note, lastDateChanging = "")
+            val noteEntity = NoteEntity(
+                title = title,
+                note = note,
+                lastDateChanging = "",
+                id = Uuid.random().toString()
+            )
             println(noteEntity.toString())
             databaseRepository.upsertNote(noteEntity)
         }

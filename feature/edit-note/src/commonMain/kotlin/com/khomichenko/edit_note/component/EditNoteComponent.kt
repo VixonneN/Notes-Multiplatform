@@ -5,7 +5,7 @@ import kotlinx.coroutines.flow.Flow
 interface EditNoteComponent {
 
     data class Model(
-        val id: Long = 0,
+        val id: String = "",
         val title: String = "",
         val note: String = ""
     )

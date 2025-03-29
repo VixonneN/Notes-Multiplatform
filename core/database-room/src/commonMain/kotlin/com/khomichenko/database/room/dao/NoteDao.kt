@@ -14,7 +14,7 @@ interface NoteDao {
     fun getAllNotes() : Flow<List<NoteEntity>>
 
     @Query("SELECT * FROM note_entity WHERE id = :id")
-    fun selectNoteById(id: Long) : Flow<NoteEntity>
+    fun selectNoteById(id: String) : Flow<NoteEntity>
 
     @Upsert
     suspend fun upsertNote(noteEntity: NoteEntity)
