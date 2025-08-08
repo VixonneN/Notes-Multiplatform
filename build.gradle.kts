@@ -7,7 +7,7 @@ plugins {
     alias(libs.plugins.kotlinx.serialization).apply(false)
     alias(libs.plugins.sqlDelight).apply(false)
     alias(libs.plugins.compose.plugin).apply(false)
-    alias(libs.plugins.google.services.android).apply(false)
-    alias(libs.plugins.firebase.crashlytics).apply(false)
+    alias(libs.plugins.detekt).apply(false)
+    alias(libs.plugins.convention.detekt).apply(false)
 //    alias(libs.plugins.ksp).apply(false)
 }

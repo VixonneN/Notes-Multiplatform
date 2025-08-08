@@ -22,7 +22,6 @@ fun RootScreen(rootComponent: RootComponent) = CustomNotesTheme {
         when (val child = it.instance) {
             is RootComponent.Child.Auth -> AuthScreen(child.component)
             is RootComponent.Child.Main -> MainScreen(child.component)
-//            is RootComponent.Child.Main -> SomeMain()
             is RootComponent.Child.Onboarding -> OnboardingScreen(child.component)
             is RootComponent.Child.Registration -> RegistrationScreen(child.component)
         }

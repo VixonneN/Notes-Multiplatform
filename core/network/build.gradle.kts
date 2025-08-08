@@ -23,9 +23,6 @@ kotlin {
         commonMain.dependencies {
             implementation(libs.kotlinx.coroutines.core)
 
-            implementation(libs.gitlive.auth)
-            implementation(libs.gitlive.firestore)
-
             implementation(libs.kermit)
             implementation(libs.koin.core)
         }

@@ -27,6 +27,7 @@ kotlin {
             implementation(compose.runtime)
             implementation(compose.ui)
             implementation(compose.material3)
+            implementation(compose.materialIconsExtended)
 
             implementation(libs.mvikotlin.core)
             implementation(libs.mvikotlin.main)

@@ -15,7 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import com.khomichenko.notes.component.NotesComponent
-import com.khomichenko.notes.component.NotesComponent.*
+import com.khomichenko.notes.component.NotesComponent.Model
 import com.khomichenko.notes.mapper.Note
 
 @Composable
@@ -29,7 +29,6 @@ fun ListNotesScreen(component: NotesComponent) {
             }
         },
         floatingActionButtonPosition = FabPosition.End
-
     ) {
         val state = component.state.collectAsState(Model())
         LazyColumn {

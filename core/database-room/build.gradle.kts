@@ -21,9 +21,9 @@ kotlin {
         commonMain.dependencies {
             implementation(libs.androidx.room.runtime)
 
-
             implementation(libs.kotlinx.datetime)
             implementation(libs.androidx.sqlite.bundled)
+            implementation(libs.kotlinx.coroutines.core)
 
             implementation(libs.koin.core)
         }

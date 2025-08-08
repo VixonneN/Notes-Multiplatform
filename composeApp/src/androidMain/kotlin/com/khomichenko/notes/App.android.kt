@@ -6,9 +6,8 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.CompositionLocalProvider
+import co.touchlab.kermit.loggerConfigInit
 import com.arkivanov.decompose.defaultComponentContext
-import com.google.firebase.Firebase
-import com.google.firebase.initialize
 import com.khomichenko.notes.di.AppModule
 import com.khomichenko.root.component.RootComponent
 import com.khomichenko.root.ui.MainLifecycleOwner
@@ -27,8 +26,7 @@ class AndroidApp : Application() {
     override fun onCreate() {
         super.onCreate()
         INSTANCE = this
-
-        Firebase.initialize(this)
+        loggerConfigInit()
 
         startKoin {
             androidContext(this@AndroidApp)

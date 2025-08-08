@@ -1,4 +1,3 @@
-import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
@@ -6,16 +5,14 @@ plugins {
     alias(libs.plugins.compose)
     alias(libs.plugins.compose.plugin)
     alias(libs.plugins.android.application)
-    alias(libs.plugins.google.services.android)
     alias(libs.plugins.buildConfig)
     alias(libs.plugins.kotlinx.serialization)
     alias(libs.plugins.sqlDelight)
-    alias(libs.plugins.firebase.crashlytics)
+    alias(libs.plugins.convention.detekt)
 }
 
 kotlin {
     androidTarget {
-        @OptIn(ExperimentalKotlinGradlePluginApi::class)
         compilerOptions {
             jvmTarget.set(JvmTarget.JVM_17)
         }
@@ -37,7 +34,7 @@ kotlin {
     sourceSets {
         all {
             languageSettings {
-//                optIn("org.jetbrains.compose.resources.ExperimentalResourceApi")
+                optIn("org.jetbrains.compose.resources.ExperimentalResourceApi")
             }
         }
         commonMain.dependencies {
@@ -48,7 +45,7 @@ kotlin {
             implementation(libs.composeImageLoader)
             implementation(libs.kermit)
 
-//            implementation(libs.kotlinx.coroutines.core)
+            implementation(libs.kotlinx.coroutines.core)
 
             implementation(libs.koin.core)
 
@@ -63,7 +60,6 @@ kotlin {
 
             //core implementation
             implementation(projects.core.preferences)
-//            implementation(projects.core.database)
             implementation(projects.core.network)
             implementation(projects.core.ui)
             implementation(projects.core.databaseRoom)
@@ -80,8 +76,6 @@ kotlin {
             implementation(projects.feature.settings)
             implementation(projects.feature.favorites)
             implementation(projects.feature.profile)
-
-            api(libs.gitlive.crashlytics)
         }
 
         commonTest.dependencies {
@@ -93,21 +87,18 @@ kotlin {
             implementation(libs.androidx.activityCompose)
 
             implementation(libs.koin.android)
-
-            implementation(project.dependencies.platform(libs.firebase.boom))
-            implementation(libs.firebase.crashlytics)
         }
     }
 }
 
 android {
     namespace = "com.khomichenko.notes"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         minSdk = 26
         //noinspection EditedTargetSdkVersion
-        targetSdk= 35
+        targetSdk= 36
 
         applicationId = "com.khomichenko.notes.androidApp"
         versionCode = 1

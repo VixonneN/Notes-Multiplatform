@@ -33,6 +33,7 @@ kotlin {
             implementation(compose.runtime)
             implementation(compose.ui)
             implementation(compose.material3)
+            implementation(compose.materialIconsExtended)
 
             implementation(libs.kotlinx.coroutines.core)
 

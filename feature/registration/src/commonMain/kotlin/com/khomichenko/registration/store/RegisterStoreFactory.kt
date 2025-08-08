@@ -43,8 +43,8 @@ internal class RegisterStoreFactory(
 
                 authRepository.auth(login, password)
                     .onSuccess { response ->
-                        response?.let {
-                            preferenceRepository.setUserToken(it)
+                        response.let {
+                            preferenceRepository.setUserToken("")
                         }
                     }
                     .onFailure {
