@@ -6,12 +6,13 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.CompositionLocalProvider
-import co.touchlab.kermit.loggerConfigInit
 import com.arkivanov.decompose.defaultComponentContext
 import com.khomichenko.notes.di.AppModule
 import com.khomichenko.root.component.RootComponent
 import com.khomichenko.root.ui.MainLifecycleOwner
 import com.khomichenko.root.ui.RootScreen
+import io.github.aakira.napier.DebugAntilog
+import io.github.aakira.napier.Napier
 import org.koin.android.ext.android.inject
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
@@ -26,7 +27,8 @@ class AndroidApp : Application() {
     override fun onCreate() {
         super.onCreate()
         INSTANCE = this
-        loggerConfigInit()
+
+        Napier.base(DebugAntilog())
 
         startKoin {
             androidContext(this@AndroidApp)
@@ -52,7 +54,6 @@ class AppActivity : ComponentActivity() {
             CompositionLocalProvider(
                 MainLifecycleOwner provides rootComponent
             ) {
-
                 RootScreen(rootComponent)
             }
         }

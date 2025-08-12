@@ -6,4 +6,3 @@ plugins {
 dependencies {
     commonMainImplementation(projects.core.databaseRoom)
 }
-

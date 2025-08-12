@@ -1,58 +1,15 @@
-import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-
 plugins {
-    alias(libs.plugins.multiplatform)
-    alias(libs.plugins.android.library)
+    alias(libs.plugins.convention.core)
 }
 
-kotlin {
-    androidTarget {
-        @OptIn(ExperimentalKotlinGradlePluginApi::class)
-        compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_17)
-        }
-    }
+dependencies {
+    commonMainImplementation(libs.multiplatform.settings.coroutines)
+    commonMainImplementation(libs.multiplatform.settings)
 
-    iosX64()
-    iosArm64()
-    iosSimulatorArm64()
+    androidMainImplementation(libs.multiplatform.settings.datastore)
+    androidMainImplementation(libs.androidx.datastore.core)
+    androidMainImplementation(libs.androidx.datastore.preferences)
+    androidMainImplementation(libs.koin.core)
 
-    sourceSets {
-        commonMain.dependencies {
-            //preferences
-            implementation(libs.multiplatform.settings.coroutines)
-            implementation(libs.multiplatform.settings)
-
-            //di
-            implementation(libs.koin.core)
-
-            //coroutines
-            implementation(libs.kotlinx.coroutines.core)
-        }
-        androidMain.dependencies {
-            implementation(libs.multiplatform.settings.datastore)
-            implementation(libs.androidx.datastore.core)
-            implementation(libs.androidx.datastore.preferences)
-
-            //di
-            implementation(libs.koin.core)
-        }
-        iosMain.dependencies {
-            //di
-            implementation(libs.koin.core)
-        }
-    }
-}
-
-android {
-    namespace = "com.khomichenko.preferences"
-    compileSdk = 35
-    defaultConfig {
-        minSdk = 24
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
-    }
+    iosMainImplementation(libs.koin.core)
 }
