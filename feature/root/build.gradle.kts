@@ -1,56 +1,14 @@
-import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-
 plugins {
-    alias(libs.plugins.multiplatform)
-    alias(libs.plugins.android.library)
-    alias(libs.plugins.kotlinx.serialization)
+    alias(libs.plugins.convention.feature)
+    alias(libs.plugins.convention.compose)
 }
 
-kotlin {
-    androidTarget {
-        @OptIn(ExperimentalKotlinGradlePluginApi::class)
-        compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_17)
-        }
-    }
+dependencies {
+    commonMainImplementation(projects.core.preferences)
+    commonMainImplementation(projects.core.ui)
 
-    iosX64()
-    iosArm64()
-    iosSimulatorArm64()
-
-    sourceSets {
-        commonMain.dependencies {
-
-            implementation(libs.decompose)
-
-            implementation(libs.mvikotlin.core)
-            implementation(libs.mvikotlin.main)
-            implementation(libs.mvikotlin.coroutines)
-
-            implementation(libs.koin.core)
-
-            implementation(libs.kotlinx.coroutines.core)
-
-            implementation(projects.core.preferences)
-
-            implementation(projects.feature.auth)
-            implementation(projects.feature.main)
-            implementation(projects.feature.onboarding)
-            implementation(projects.feature.registration)
-        }
-    }
-
-}
-
-android {
-    namespace = "com.khomichenko.root"
-    compileSdk = 35
-    defaultConfig {
-        minSdk = 24
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
-    }
+    commonMainImplementation(projects.feature.auth)
+    commonMainImplementation(projects.feature.main)
+    commonMainImplementation(projects.feature.onboarding)
+    commonMainImplementation(projects.feature.registration)
 }

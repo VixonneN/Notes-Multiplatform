@@ -1,63 +1,64 @@
 [versions]
 
-kotlin = "2.1.10"
+kotlin = "2.2.0"
 
-compose = "1.7.3"
-composeImageLoader = "1.9.0"
-compose-uitooling = "1.7.7"
+androidCompile = "36"
+androidMin = "26"
+jvmVersion = "17"
 
-agp = "8.8.0"
-androidx-appcompat = "1.7.0"
-androidx-activityCompose = "1.10.0"
+compose = "1.8.2"
+composeImageLoader = "1.10.0"
+compose-uitooling = "1.8.3"
 
-decompose = "3.3.0-alpha3"
-essenty = "2.5.0-alpha01"
+agp = "8.12.0"
+androidx-appcompat = "1.7.1"
+androidx-activityCompose = "1.10.1"
+
+decompose = "3.3.0"
+essenty = "2.5.0"
 mvikotlin = "4.3.0"
 
-kermit = "2.0.5"
-buildConfig = "5.3.5"
+kermit = "2.0.6"
+napier = "2.7.1"
+buildConfig = "5.6.7"
 
-kotlinx-coroutines = "1.10.1"
+kotlinx-coroutines = "1.10.2"
 
-ktor = "3.0.3"
+ktor = "3.2.3"
 
 composeIcons = "1.1.1"
 
-kotlinx-serialization = "1.7.3"
+kotlinx-serialization = "1.9.0"
 
-multiplatformSettings = "1.2.0"
-datastoreCore = "1.1.2"
+multiplatformSettings = "1.3.0"
+datastoreCore = "1.1.7"
 
-koin = "4.0.0"
-sqlDelight = "2.0.2"
-room = "2.7.0-alpha13"
+koin = "4.1.0"
+sqlDelight = "2.1.0"
+room = "2.7.2"
 
-supabase = "3.0.1"
+sqliteBundled = "2.5.2"
+supabase = "3.2.2"
 
-kotlinx-datetime = "0.6.1"
+kotlinx-datetime = "0.7.1"
 
-##firebase-android
-#plugins
-google-services-plugin = "4.4.2"
-firebase-crashlytics-plugin = "3.0.2"
-#dependency
-firebase-version = "33.8.0"
-##firebase-ios
-#dependency
-gitlive = "2.1.0"
-coreKtx = "1.15.0"
+coreKtx = "1.16.0"
 junit = "4.13.2"
-junitVersion = "1.2.1"
-espressoCore = "3.6.1"
+junitVersion = "1.3.0"
+espressoCore = "3.7.0"
 material = "1.12.0"
-ksp = "2.1.10-1.0.29"
+ksp = "2.2.0-2.0.2"
+detekt = "1.23.8"
 
 [libraries]
+
+compose-gradlePlugin = { module = "org.jetbrains.compose:org.jetbrains.compose.gradle.plugin", version.ref = "compose" }
 
 #android
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "androidx-appcompat" }
 androidx-activityCompose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
 
+androidx-sqlite-bundled = { module = "androidx.sqlite:sqlite-bundled", version.ref = "sqliteBundled" }
 decompose = { module = "com.arkivanov.decompose:decompose", version.ref = "decompose" }
 decompose-compose = { module = "com.arkivanov.decompose:extensions-compose", version.ref = "decompose" }
 
@@ -72,6 +73,7 @@ mvikotlin-coroutines = { module = "com.arkivanov.mvikotlin:mvikotlin-extensions-
 
 #logs
 kermit = { module = "co.touchlab:kermit", version.ref = "kermit" }
+napier = { module = "io.github.aakira:napier", version.ref = "napier" }
 
 #coroutines
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinx-coroutines" }
@@ -84,6 +86,7 @@ ktor-client-content-negotiation = { module = "io.ktor:ktor-client-content-negoti
 ktor-serialization-kotlinx = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
 ktor-client-darwin = { module = "io.ktor:ktor-client-darwin", version.ref = "ktor" }
 ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
+
 ##supabase
 supabase-gotrue = { module = "io.github.jan-tennert.supabase:gotrue-kt", version.ref = "supabase" }
 supabase-postgrest = { module = "io.github.jan-tennert.supabase:postgrest-kt", version.ref = "supabase" }
@@ -107,6 +110,10 @@ androidx-datastore-preferences = { module = "androidx.datastore:datastore-prefer
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
 
+#detekt
+detekt-formatting = { module = "io.gitlab.arturbosch.detekt:detekt-formatting", version.ref = "detekt" }
+detekt-gradlePlugin = { group = "io.gitlab.arturbosch.detekt", name = "detekt-gradle-plugin", version.ref = "detekt" }
+
 #database
 sqlDelight-driver-sqlite = { module = "app.cash.sqldelight:sqlite-driver", version.ref = "sqlDelight" }
 sqlDelight-driver-android = { module = "app.cash.sqldelight:android-driver", version.ref = "sqlDelight" }
@@ -122,17 +129,9 @@ androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref =
 #date time
 kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinx-datetime" }
 
-# firebase android
-firebase-boom = { module = "com.google.firebase:firebase-bom", version.ref = "firebase-version" }
-firebase-analytics = { module = "com.google.firebase:firebase-analytics" }
-firebase-crashlytics = { module = "com.google.firebase:firebase-crashlytics" }
-firebase-auth = { module = "com.google.firebase:firebase-auth" }
-firebase-database = { module = "com.google.firebase:firebase-database" }
-# firebase kmp
-gitlive-auth = { module = "dev.gitlive:firebase-auth", version.ref = "gitlive" }
-gitlive-database = { module = "dev.gitlive:firebase-database", version.ref = "gitlive" }
-gitlive-firestore = { module = "dev.gitlive:firebase-firestore", version.ref = "gitlive" }
-gitlive-crashlytics = { module = "dev.gitlive:firebase-crashlytics", version.ref = "gitlive" }
+android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "agp" }
+kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
+
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
@@ -142,15 +141,21 @@ material = { group = "com.google.android.material", name = "material", version.r
 [plugins]
 
 multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
-compose = { id = "org.jetbrains.compose", version.ref = "compose" }
-compose-plugin = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 android-application = { id = "com.android.application", version.ref = "agp" }
 android-library = { id = "com.android.library", version.ref = "agp" }
 buildConfig = { id = "com.github.gmazzo.buildconfig", version.ref = "buildConfig" }
 kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 sqlDelight = { id = "app.cash.sqldelight", version.ref = "sqlDelight" }
+detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 
-google-services-android = { id = "com.google.gms.google-services", version.ref = "google-services-plugin" }
-firebase-crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "firebase-crashlytics-plugin" }
+compose = { id = "org.jetbrains.compose", version.ref = "compose" }
+composePlugin = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+
+convention-detekt = { id = "notes.detekt.plugin" }
+convention-compose = { id = "notes.compose.plugin" }
+convention-feature = { id = "notes.feature.plugin" }
+convention-core = { id = "notes.core.plugin" }
+convention-application = { id = "notes.application.plugin" }

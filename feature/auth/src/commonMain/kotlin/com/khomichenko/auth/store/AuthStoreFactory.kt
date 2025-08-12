@@ -43,8 +43,8 @@ internal class AuthStoreFactory(
 
                 authRepository.login(login, password)
                     .onSuccess { response ->
-                        response?.let {
-                            preferenceRepository.setUserToken(it)
+                        response.let {
+                            preferenceRepository.setUserToken("")
                         }
                     }
                     .onFailure {

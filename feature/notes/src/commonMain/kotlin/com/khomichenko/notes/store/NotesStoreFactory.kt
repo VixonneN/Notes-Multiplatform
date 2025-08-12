@@ -43,7 +43,6 @@ internal class NotesStoreFactory(
         }
 
         private fun doHust() {
-            println("doHUST")
         }
 
         override fun executeAction(action: Action) {

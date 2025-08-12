@@ -15,7 +15,7 @@ import org.koin.core.component.get
 internal class FavoritesComponentImpl(
     componentContext: ComponentContext,
     private val openAddNoteSlot:() -> Unit,
-    private val openEditNoteSlot:(id: Long) -> Unit
+    private val openEditNoteSlot:(id: String) -> Unit
 ) : FavoritesComponent, KoinComponent, ComponentContext by componentContext {
 
     private val store = instanceKeeper.getStore {
@@ -40,7 +40,7 @@ internal class FavoritesComponentImpl(
         openAddNoteSlot()
     }
 
-    override fun openEditSlotComponent(id: Long) {
+    override fun openEditSlotComponent(id: String) {
         openEditNoteSlot(id)
     }
 }

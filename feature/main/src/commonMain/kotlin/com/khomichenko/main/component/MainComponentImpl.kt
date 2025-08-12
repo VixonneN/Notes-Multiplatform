@@ -57,7 +57,7 @@ internal class MainComponentImpl(
         }
     )
 
-    private fun editNote(componentContext: ComponentContext, idNote: Int) = get<EditNoteComponent>(
+    private fun editNote(componentContext: ComponentContext, idNote: String) = get<EditNoteComponent>(
         parameters = {
             parametersOf(
                 componentContext,
@@ -145,7 +145,7 @@ internal class MainComponentImpl(
         slotNavigation.activate(SlotConfig.AddNote)
     }
 
-    override fun openEditNoteSlot(id: Int) {
+    override fun openEditNoteSlot(id: String) {
         slotNavigation.activate(SlotConfig.EditNote(id))
     }
 
@@ -174,6 +174,6 @@ internal class MainComponentImpl(
         data object Settings : SlotConfig
 
         @Serializable
-        data class EditNote(val id: Int) : SlotConfig
+        data class EditNote(val id: String) : SlotConfig
     }
 }

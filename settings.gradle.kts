@@ -1,6 +1,7 @@
 rootProject.name = "Multiplatform-App"
 
 pluginManagement {
+    includeBuild("convention-plugins")
     repositories {
         google()
         gradlePluginPortal()
@@ -24,7 +25,6 @@ include(":composeApp")
 
 include(":core:network")
 include(":core:preferences")
-//include(":core:database")
 
 include(":feature:onboarding")
 include(":feature:root")
@@ -32,21 +32,11 @@ include(":feature:auth")
 include(":feature:main")
 include(":feature:registration")
 include(":feature:notes")
-include(":feature:add-note")
+include(":feature:add_note")
 include(":feature:profile")
-include(":feature:edit-note")
+include(":feature:edit_note")
 include(":feature:settings")
 include(":feature:favorites")
 
-include(":feature-ui:onboarding")
-include(":feature-ui:auth")
-include(":feature-ui:main")
-include(":feature-ui:registration")
-include(":feature-ui:note")
-include(":feature-ui:add-note")
-include(":feature-ui:edit-note")
-include(":feature-ui:settings")
-include(":feature-ui:favorites")
-include(":feature-ui:profile")
 include(":core:ui")
-include(":core:database-room")
+include(":core:database_room")

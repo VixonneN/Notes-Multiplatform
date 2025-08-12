@@ -34,7 +34,7 @@ interface MainComponent {
     fun dismissSlotChild()
 
     fun openAddNoteSlot()
-    fun openEditNoteSlot(id: Int)
+    fun openEditNoteSlot(id: String)
 
     fun openSettingsSlot()
 }

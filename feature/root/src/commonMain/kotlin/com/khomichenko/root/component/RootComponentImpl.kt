@@ -57,7 +57,6 @@ internal class RootComponentImpl(
         parameters = { parametersOf(componentContext) }
     )
 
-
     private val navigation = StackNavigation<Config>()
 
     private val _stack = childStack(
